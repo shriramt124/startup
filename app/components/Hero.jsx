@@ -1,336 +1,294 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
+
+const slides = [
+  {
+    id: 1,
+    background: '/slideimage1.jpg',
+    title: 'Custom Web Solutions',
+    description: 'We craft bespoke websites and platforms tailored to your unique business needs and goals.',
+    buttonText: 'Explore Our Services',
+    metrics: [
+      { value: '45%+', label: 'Average Conversion Lift' },
+      { value: '2X', label: 'Faster Page Loads' },
+      { value: '99.9%', label: 'Uptime Guarantee' },
+    ],
+    principles: [
+      { icon: 'user', title: 'User-Centric Design' },
+      { icon: 'agile', title: 'Agile Development' },
+      { icon: 'scalable', title: 'Scalable Architecture' },
+    ],
+  },
+  {
+    id: 2,
+    background: '/slideimage2.jpg',
+    title: 'Innovative Mobile Apps',
+    description: 'Engaging and high-performance mobile applications for iOS and Android that captivate your users.',
+    buttonText: 'Discover Mobile Solutions',
+    principles: [
+      { icon: 'user', title: 'Intuitive UX/UI' },
+      { icon: 'agile', title: 'Cross-Platform' },
+      { icon: 'scalable', title: 'Performance Optimized' },
+    ],
+  },
+  {
+    id: 3,
+    background: '/slideimg3.jpg',
+    title: 'AI-Powered Insights',
+    description: 'Leverage artificial intelligence to unlock data-driven insights and automate your business processes.',
+    buttonText: 'Explore AI Services',
+    quote: {
+      text: 'Our architecture is built for scale, ensuring your platform grows seamlessly with your business.',
+      author: 'Jane Doe',
+      role: 'Lead Architect'
+    },
+    principles: [
+      { icon: 'user', title: 'Machine Learning' },
+      { icon: 'agile', title: 'Predictive Analytics' },
+      { icon: 'scalable', title: 'Data Visualization' },
+    ],
+  },
+];
+
+const PrincipleIcon = ({ icon }) => {
+  switch (icon) {
+    case 'user':
+      return (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+      );
+    case 'agile':
+      return (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      );
+    case 'scalable':
+      return (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 0h-4m4 0l-5-5" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+};
 
 export default function Hero() {
-    const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const timeoutRef = useRef(null);
 
-    const slides = [
-        {
-            image: 'slideimage1.jpg',
-            title: 'WE WORKS THE WAY',
-            subtitle: 'THAT WORKS FOR YOU IN EFICSY',
-            description: 'Empowering businesses with cutting-edge technology solutions that drive growth and accelerate digital transformation',
-            valueProps: 'Expert Team • Proven Results • 24/7 Support • Tailored Solutions',
-            isDefault: true,
-            bgPosition: 'center'
-        },
-        {
-            image: 'slideimage1.jpg',
-            title: 'AI-Powered Solutions',
-            description: 'Transform your business with cutting-edge artificial intelligence and machine learning technologies.',
-            detailedContent: 'Leveraging advanced AI algorithms and neural networks to create intelligent systems that learn, adapt, and optimize your business processes in real-time. Our AI solutions include predictive analytics, natural language processing, computer vision, and automated decision-making systems.',
-            cards: [
-                { 
-                    title: 'Machine Learning', 
-                    text: 'Advanced ML algorithms that continuously learn from your data to improve accuracy and performance over time.',
-                    image: '�'
-                },
-                { 
-                    title: 'Neural Networks', 
-                    text: 'Deep learning models capable of handling complex patterns and making sophisticated predictions.',
-                    image: '🧠'
-                },
-                { 
-                    title: 'Predictive Analytics', 
-                    text: 'Turn your data into actionable insights with powerful forecasting and trend analysis tools.',
-                    image: '📊'
-                }
-            ],
-            bgPosition: 'center'
-        },
-        {
-            image: 'slideimage2.jpg',
-            title: 'Digital Innovation',
-            description: 'Building scalable, secure, and innovative digital products that drive growth and efficiency.',
-            detailedContent: 'From concept to deployment, we craft custom digital solutions using modern frameworks and cloud technologies to ensure your business stays ahead of the competition. We specialize in creating responsive web applications, mobile apps, and enterprise software solutions.',
-            cards: [
-                { 
-                    title: 'Modern Tech Stack', 
-                    text: 'Built with the latest frameworks like React, Next.js, and Node.js for optimal performance and scalability.',
-                    image: '🚀'
-                },
-                { 
-                    title: 'Cloud Infrastructure', 
-                    text: 'Scalable cloud solutions on AWS, Azure, and Google Cloud with automatic scaling and high availability.',
-                    image: '☁️'
-                },
-                { 
-                    title: 'Security & Compliance', 
-                    text: 'Enterprise-grade security with encryption, authentication, and compliance with industry standards.',
-                    image: '�'
-                }
-            ],
-            bgPosition: 'center'
-        },
-        {
-            image: 'slideimg3.jpg',
-            title: 'Expert Team',
-            description: 'Collaborate with experienced professionals dedicated to delivering excellence in every project.',
-            detailedContent: 'Our team of seasoned developers, designers, and strategists work together to bring your vision to life with precision, creativity, and unwavering commitment to quality. With over 10 years of combined experience, we deliver projects on time and exceed expectations.',
-            cards: [
-                { 
-                    title: 'Development Excellence', 
-                    text: 'Our senior developers bring 10+ years of experience in building robust, scalable applications.',
-                    image: '👨‍�'
-                },
-                { 
-                    title: 'Creative Design', 
-                    text: 'Award-winning designers who create beautiful, intuitive interfaces that users love.',
-                    image: '🎨'
-                },
-                { 
-                    title: '24/7 Support', 
-                    text: 'Round-the-clock dedicated support ensuring your success at every step of the journey.',
-                    image: '🤝'
-                }
-            ],
-            bgPosition: 'center'
-        }
-    ];
+  useEffect(() => {
+    // autoplay timer
+    timeoutRef.current = setTimeout(() => {
+      setCurrentSlide((s) => (s + 1) % slides.length);
+    }, 6000);
+    return () => clearTimeout(timeoutRef.current);
+  }, [currentSlide]);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentSlide((prev) => {
-                const nextSlide = (prev + 1) % slides.length;
-                return nextSlide;
-            });
-        }, currentSlide === 0 ? 10000 : 5000); // 10 seconds for first slide, 5 seconds for others
+  // keyboard navigation
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'ArrowLeft') setCurrentSlide((s) => (s - 1 + slides.length) % slides.length);
+      if (e.key === 'ArrowRight') setCurrentSlide((s) => (s + 1) % slides.length);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
 
-        return () => clearInterval(interval);
-    }, [currentSlide]);
+  const goTo = (i) => {
+    clearTimeout(timeoutRef.current);
+    setCurrentSlide(i);
+  };
 
-    return (
-        
-        <div className="w-full min-h-screen relative flex flex-col lg:flex-row">
-             
-            
+  const slide = slides[currentSlide];
 
-            {/* Right Half - Slideshow with Background Images */}
-            <div className="w-full lg:w-full min-h-[400px] sm:min-h-[480px] md:min-h-[550px] lg:min-h-screen relative overflow-hidden bg-gray-900">
-                {/* Slideshow Container */}
-                {slides.map((slide, index) => (
-                    <div
-                        key={index}
-                        className={`absolute inset-0 transition-opacity duration-1000 group ${
-                            index === currentSlide ? 'opacity-100' : 'opacity-0 pointer-events-none'
-                        }`}
-                    >
-                        {/* Background Image */}
-                        <div 
-                            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                            style={{
-                                backgroundImage: `url(${slide.image})`,
-                                backgroundPosition: slide.bgPosition
-                            }}
-                        >
-                            {/* Dark Overlay */}
-                            <div className="absolute inset-0 bg-black/50 group-hover:bg-black/60 transition-all duration-500"></div>
-                        </div>
-
-                        {slide.isDefault ? (
-                            /* Default Slide - Centered Content */
-                            <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4 sm:px-6 md:px-8 lg:px-16 pt-16 sm:pt-20 pb-24">
-                                <div className="max-w-5xl text-center w-full">
-                                    {/* Main Heading */}
-                                    <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-black leading-tight mb-3 sm:mb-4">
-                                        <span className="text-white">{slide.title} </span>
-                                        <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
-                                            {slide.subtitle}
-                                        </span>
-                                    </h1>
-
-                                    {/* Subtitle */}
-                                    <p className="text-xs sm:text-sm md:text-base text-gray-200 mb-4 sm:mb-5 leading-relaxed max-w-3xl mx-auto">
-                                        {slide.description}
-                                    </p>
-
-                                    {/* Value Proposition */}
-                                    <p className="text-[10px] sm:text-xs md:text-sm text-cyan-300 mb-5 sm:mb-6 font-medium">
-                                        {slide.valueProps}
-                                    </p>
-
-                                    {/* CTA Buttons */}
-                                    <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6 sm:mb-8">
-                                        <button className="px-6 sm:px-8 py-2.5 sm:py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold text-xs sm:text-sm transition-all duration-300 shadow-lg hover:shadow-blue-500/50 hover:scale-105">
-                                            Get free consultation Now
-                                        </button>
-                                        <button className="px-6 sm:px-8 py-2.5 sm:py-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/30 rounded-full font-semibold text-xs sm:text-sm transition-all duration-300">
-                                           Let's Connect
-                                        </button>
-                                    </div>
-
-                                    {/* Stats - Compact Grid */}
-                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto">
-                                        <div className="text-center backdrop-blur-sm bg-white/5 rounded-lg py-3 px-2 border border-white/10">
-                                            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1">10+</div>
-                                            <div className="text-[10px] sm:text-xs text-gray-300 font-medium">Years Experience</div>
-                                        </div>
-                                        <div className="text-center backdrop-blur-sm bg-white/5 rounded-lg py-3 px-2 border border-white/10">
-                                            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1">500+</div>
-                                            <div className="text-[10px] sm:text-xs text-gray-300 font-medium">Projects Delivered</div>
-                                        </div>
-                                        <div className="text-center backdrop-blur-sm bg-white/5 rounded-lg py-3 px-2 border border-white/10">
-                                            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1">98%</div>
-                                            <div className="text-[10px] sm:text-xs text-gray-300 font-medium">Client Satisfaction</div>
-                                        </div>
-                                        <div className="text-center backdrop-blur-sm bg-white/5 rounded-lg py-3 px-2 border border-white/10">
-                                            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1">50+</div>
-                                            <div className="text-[10px] sm:text-xs text-gray-300 font-medium">Team Members</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        ) : (
-                            /* Complete Bento Grid Layout */
-                            <div className="absolute inset-0 px-4 sm:px-6 md:px-8 lg:px-12 py-20 sm:py-24 md:py-28 z-10">
-                                <div className="max-w-7xl mx-auto">
-                                    {/* Unified Bento Grid - 6 columns */}
-                                    <div className="grid grid-cols-6 auto-rows-fr gap-3 sm:gap-4 h-[500px] sm:h-[550px] lg:h-[600px]">
-                                        {/* Title Card - Large */}
-                                        <div className="col-span-6 sm:col-span-3 row-span-2 backdrop-blur-md bg-gradient-to-br from-white/15 to-white/5 rounded-2xl p-6 sm:p-8 border border-white/30 flex flex-col justify-center group hover:border-cyan-500/50 transition-all duration-300">
-                                            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 leading-tight">
-                                                {slide.title}
-                                            </h2>
-                                            <p className="text-sm sm:text-base md:text-lg text-gray-200 leading-relaxed">
-                                                {slide.description}
-                                            </p>
-                                        </div>
-
-                                        {/* Feature Cards */}
-                                        {slide.cards && slide.cards.map((card, idx) => {
-                                            // Define bento grid positions
-                                            const gridClasses = idx === 0 
-                                                ? 'col-span-3 sm:col-span-3 row-span-2' // Medium-large
-                                                : idx === 1
-                                                ? 'col-span-3 sm:col-span-2 row-span-2' // Medium
-                                                : idx === 2
-                                                ? 'col-span-3 sm:col-span-2 row-span-2' // Medium
-                                                : 'col-span-3 sm:col-span-2 row-span-2'; // Medium
-                                            
-                                            return (
-                                                <div 
-                                                    key={idx}
-                                                    className={`${gridClasses} backdrop-blur-md bg-white/10 rounded-2xl p-4 sm:p-5 border border-white/20 hover:bg-white/15 hover:border-white/30 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl flex flex-col justify-between overflow-hidden group`}
-                                                >
-                                                    {/* Highlight Badge */}
-                                                    <div className="inline-flex self-start">
-                                                        <span className="text-[10px] sm:text-xs font-semibold px-2.5 py-1 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 rounded-full text-cyan-300 mb-2 sm:mb-3">
-                                                            {card.highlight}
-                                                        </span>
-                                                    </div>
-                                                    
-                                                    {/* Card Title */}
-                                                    <h3 className="text-sm sm:text-base md:text-lg font-bold text-white mb-2 leading-tight">
-                                                        {card.title}
-                                                    </h3>
-                                                    
-                                                    {/* Card Description */}
-                                                    <p className="text-[11px] sm:text-xs text-gray-300 leading-relaxed flex-grow overflow-hidden">
-                                                        {card.text}
-                                                    </p>
-
-                                                    {/* Decorative Bottom Line */}
-                                                    <div className="mt-auto pt-3">
-                                                        <div className="h-0.5 w-10 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                                    </div>
-                                                </div>
-                                            );
-                                        })}
-
-                                        {/* Learn More Button Card - Last Card */}
-                                        <div className="col-span-6 sm:col-span-2 row-span-2 backdrop-blur-md bg-gradient-to-br from-cyan-500/20 to-blue-600/20 rounded-2xl p-6 border border-cyan-500/40 hover:border-cyan-500/60 flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/30 cursor-pointer group">
-                                            <div className="text-center">
-                                                <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
-                                                    <svg className="w-12 h-12 sm:w-16 sm:h-16 mx-auto text-cyan-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                                    </svg>
-                                                </div>
-                                                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Learn More</h3>
-                                                <p className="text-xs sm:text-sm text-cyan-200">Discover our solutions</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                ))}
-
-                {/* Slide Indicators */}
-                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-3 z-20">
-                    {slides.map((_, index) => (
-                        <button
-                            key={index}
-                            onClick={() => setCurrentSlide(index)}
-                            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                                index === currentSlide 
-                                    ? 'bg-white w-8' 
-                                    : 'bg-white/50 hover:bg-white/75'
-                            }`}
-                        />
-                    ))}
-                </div>
-
-                {/* Navigation Arrows */}
-                <button
-                    onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 z-20"
-                >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                    </svg>
-                </button>
-                <button
-                    onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 z-20"
-                >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                </button>
-            </div>
-
-            {/* Bottom Strip - Customer Satisfaction & Support */}
-            <div className="absolute bottom-0 left-0 right-0 bg-white py-3 sm:py-4 z-30">
-                <div className="flex items-center justify-center gap-4 sm:gap-8 md:gap-12 lg:gap-16 px-4 flex-wrap">
-                    <div className="flex items-center gap-2 sm:gap-3">
-                        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                        <span className="text-gray-800 font-semibold text-xs sm:text-sm md:text-base">
-                            98% Customer Satisfaction
-                        </span>
-                    </div>
-                    <div className="h-6 sm:h-8 w-px bg-gray-300 hidden sm:block"></div>
-                    <div className="flex items-center gap-2 sm:gap-3">
-                        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span className="text-gray-800 font-semibold text-xs sm:text-sm md:text-base">
-                            24/7 Support
-                        </span>
-                    </div>
-                    <div className="h-6 sm:h-8 w-px bg-gray-300 hidden sm:block"></div>
-                    <div className="flex items-center gap-2 sm:gap-3">
-                        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                        </svg>
-                        <span className="text-gray-800 font-semibold text-xs sm:text-sm md:text-base">
-                            Secure & Reliable
-                        </span>
-                    </div>
-                    <div className="h-6 sm:h-8 w-px bg-gray-300 hidden md:block"></div>
-                    <div className="hidden md:flex items-center gap-2 sm:gap-3">
-                        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                        </svg>
-                        <span className="text-gray-800 font-semibold text-xs sm:text-sm md:text-base">
-                            Free Consultation Now
-                        </span>
-                    </div>
-                </div>
-            </div>
+  return (
+    <>
+    <section className="relative w-full h-[80vh] md:h-[75vh] lg:h-[70vh] overflow-hidden">
+      {/* Slides - use Next/Image for reliable loading */}
+      {slides.map((s, i) => (
+        <div
+          key={s.id}
+          className={`absolute inset-0 transition-opacity duration-800 ${i === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
+          <Image src={s.background} alt={s.title} fill className="object-cover" priority={i === 0} />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40" />
         </div>
-    )
+      ))}
+
+      {/* Content */}
+      <div className="relative z-20 max-w-7xl mx-auto h-full px-6 lg:px-12 flex items-center">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 flex flex-col justify-center">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4 drop-shadow-lg">{slides[currentSlide].title}</h1>
+            <p className="text-base md:text-lg text-gray-200 max-w-2xl mb-6">{slides[currentSlide].description}</p>
+            <div className="flex items-center gap-4">
+              <button className="inline-flex items-center px-6 py-3 rounded-full bg-white text-black font-semibold hover:scale-[1.02] transition">{slides[currentSlide].buttonText}</button>
+              <button className="inline-flex items-center px-4 py-2 rounded-full border border-white text-white/90 hover:bg-white/10 transition">Learn more</button>
+            </div>
+          </div>
+
+          <aside className="hidden lg:block lg:col-span-1">
+              {/* Glassmorphism panel */}
+              <div className="relative p-6 rounded-xl overflow-hidden">
+                {/* frosted background */}
+                <div className="absolute inset-0 bg-white/6 backdrop-blur-lg border border-white/10 shadow-lg rounded-xl" />
+                <div className="relative z-10 text-left">
+                  {slide.quote ? (
+                    <div>
+                      <h3 className="text-xl font-semibold mb-4 text-white">Testimonial</h3>
+                      <p className="text-gray-100 italic text-sm">“{slide.quote.text}”</p>
+                      <p className="mt-4 text-xs text-gray-300">— {slide.quote.author}, <span className="text-gray-300">{slide.quote.role}</span></p>
+                    </div>
+                  ) : slide.metrics ? (
+                    <div>
+                      <h3 className="text-xl font-semibold mb-4 text-white">Key Results</h3>
+                      <div className="space-y-4">
+                            {slide.metrics.map((m, i) => (
+                              <div key={i} className="py-3 border-t border-white/10 first:pt-0">
+                                <div className="text-2xl font-extrabold text-white">{m.value}</div>
+                                <div className="text-xs text-gray-200 mt-1">{m.label}</div>
+                              </div>
+                            ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <h3 className="text-xl font-bold mb-6 text-white">Our Core Principles</h3>
+                      <ul>
+                        {slide.principles.map((principle, index) => (
+                          <li key={index} className="flex items-center mb-4 cursor-pointer group transition-colors duration-200">
+                            <PrincipleIcon icon={principle.icon} />
+                            <span className="text-base text-gray-100 group-hover:text-white transition-colors duration-200">{principle.title}</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-auto text-gray-300 group-hover:text-white transition-colors duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
+                </div>
+              </div>
+          </aside>
+        </div>
+      </div>
+
+      {/* Controls */}
+      <button
+        aria-label="Prev slide"
+        onClick={() => setCurrentSlide((s) => (s - 1 + slides.length) % slides.length)}
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60"
+      >
+        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
+      </button>
+
+      <button
+        aria-label="Next slide"
+        onClick={() => setCurrentSlide((s) => (s + 1) % slides.length)}
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60"
+      >
+        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+      </button>
+
+      {/* Indicators */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex gap-3">
+        {slides.map((_, idx) => (
+          <button key={idx} onClick={() => goTo(idx)} className={`w-3 h-3 rounded-full ${idx === currentSlide ? 'bg-white w-8 rounded-full' : 'bg-white/40 hover:bg-white/70'}`} />
+        ))}
+      </div>
+    </section>
+  {/* Below-hero showcase section (large left headline + right image) */}
+    <section className="bg-white py-16">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-8">
+          <div className="lg:col-span-8">
+            <h2 className="text-black font-extrabold leading-tight text-5xl md:text-6xl lg:text-6xl">
+              Unlocking growth with
+            
+              data, technology and
+             
+              artificial intelligence.
+            </h2>
+          </div>
+
+          <div className="lg:col-span-4 flex justify-center lg:justify-end">
+            <div className="w-full max-w-[420px] rounded-sm overflow-hidden shadow-sm">
+              <Image src="/assets/demo/cs1.webp" alt="Office" width={420} height={260} className="object-cover w-full h-auto" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {/* Company intro: image-left, content-right with CTA buttons and trusted-by row */}
+    <section className="py-16 bg-white">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          {/* Left image */}
+          <div className="lg:col-span-7">
+            <div className="overflow-hidden rounded-md shadow-sm">
+              <Image src="/assets/demo/cs2.webp" alt="Developer working" width={980} height={620} className="w-full h-auto object-cover" />
+            </div>
+          </div>
+
+          {/* Right content */}
+          <div className="lg:col-span-5">
+            <p className="text-lg text-gray-700 mb-6 max-w-xl">
+              From data strategy to managed AI solutions. At Subduxion we align technology advancements with your business model turning pressure from AI into performance and data investments into impact.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-4 mb-8">
+              <button className="inline-flex items-center px-3 py-2 text-md bg-black text-white rounded-md font-medium shadow-sm">
+                Free Discovery Call
+                <span className="ml-3 inline-flex items-center justify-center w-8 h-8 bg-white/10 rounded">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </span>
+              </button>
+
+              <button className="inline-flex items-center px-3 py-2 text-md border border-gray-300 text-gray-800 rounded-md bg-white">
+                Explore Our Services
+                <span className="ml-3 inline-flex items-center justify-center w-8 h-8 bg-gray-100 rounded">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </span>
+              </button>
+            </div>
+
+            <div className="pt-4 border-t border-gray-200">
+              <div className="text-xs text-gray-400 uppercase mb-4">Trusted by</div>
+
+              {/* Marquee slider (replaces static faded row) */}
+              <div className="overflow-hidden mb-6">
+                <div className="marquee flex items-center gap-8">
+                  {/* logos set A */}
+                  <div className="flex items-center gap-8">
+                    <Image src="/assets/demo/cs1.webp" alt="logo 1" width={140} height={48} className="object-contain" />
+                    <Image src="/assets/demo/cs2.webp" alt="logo 2" width={140} height={48} className="object-contain" />
+                    <Image src="/assets/demo/cs3.webp" alt="logo 3" width={140} height={48} className="object-contain" />
+                    <Image src="/assets/demo/cs1.webp" alt="logo 4" width={140} height={48} className="object-contain" />
+                  </div>
+
+                  {/* logos set B (duplicate) */}
+                  <div className="flex items-center gap-8">
+                    <Image src="/assets/demo/cs1.webp" alt="logo 1" width={140} height={48} className="object-contain" />
+                    <Image src="/assets/demo/cs2.webp" alt="logo 2" width={140} height={48} className="object-contain" />
+                    <Image src="/assets/demo/cs3.webp" alt="logo 3" width={140} height={48} className="object-contain" />
+                    <Image src="/assets/demo/cs1.webp" alt="logo 4" width={140} height={48} className="object-contain" />
+                  </div>
+                </div>
+
+                {/* Moved marquee styles to global CSS (app/globals.css) to avoid styled-jsx hydration class-hash mismatches */}
+              </div>
+ 
+        
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+   
+    {/* Challenges moved to separate component */}
+
+    </>
+  );
 }

@@ -138,6 +138,33 @@
   animation: loadingBar 2s ease-in-out;
 }
 
+/* Marquee / Trusted-by slider used in Hero -> Company intro
+   Moved from component-scoped styled-jsx into global CSS so server
+   and client see the same stylesheet ordering (prevents hydration
+   mismatches from generated scoped class hashes). */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  animation: marquee 18s linear infinite;
+  /* keep the marquee smooth on modern browsers */
+  will-change: transform;
+}
+
+.marquee img {
+  opacity: 0.45;
+}
+
+/* pause on hover for better UX */
+.marquee:hover {
+  animation-play-state: paused;
+}
+
 :root {
   --radius: 0.625rem;
   --background: oklch(0% 0 0);

@@ -9,6 +9,7 @@ export default function ContactUs() {
     project: "",
     services: []
   });
+  const [submitted, setSubmitted] = useState(false);
 
   const handleCheckbox = (service) => {
     setFormData(prev => ({
@@ -22,11 +23,13 @@ export default function ContactUs() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    // Add your form submission logic here
+    // fake submit for now
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 4000);
   };
 
   return (
-    <section className="bg-white py-20 relative">
+    <section className="bg-white text-black py-20 relative">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Side - Text Content */}
@@ -38,18 +41,18 @@ export default function ContactUs() {
             className="space-y-6"
           >
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                Let's work
+              <span className=" text-black  bg-clip-text  ">
+                Let's build
               </span>
               <br />
-              <span className="text-black">amazing together</span>
+              <span className="text-black">something amazing</span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-lg">
-              Ready to transform your ideas into reality? Get in touch with us and let's create something extraordinary together.
+            <p className="text-lg text-gray-900 max-w-lg">
+              Ready to transform your ideas into reality? Tell us about your project and we'll help you ship fast, beautifully, and with impact.
             </p>
             <div className="pt-4">
-              <p className="text-gray-500 mb-2">Mail us at</p>
-              <a href="mailto:info@yourcompany.com" className="text-2xl font-semibold text-black hover:text-blue-600 transition-colors">
+              <p className="text-gray-400 mb-2">Mail us at</p>
+              <a href="mailto:info@eficsy.com" className="text-2xl font-semibold text-black hover:text-orange-300 transition-colors">
                 info@eficsy.com
               </a>
             </div>
@@ -61,7 +64,7 @@ export default function ContactUs() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="bg-white rounded-2xl p-6 shadow-lg border border-gray-200"
+            className="bg-white text-black backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-white/6"
           >
             <h3 className="text-lg font-semibold text-black mb-4">Get in touch</h3>
 
@@ -69,23 +72,23 @@ export default function ContactUs() {
               
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-gray-700 text-xs mb-1.5">Your name</label>
+                  <label className="block text-gray-800 text-xs mb-1.5">Your name</label>
                   <input
                     type="text"
                     placeholder="Your name"
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    className="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm text-black placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors"
+                    className="w-full   border border-black/8   px-3 py-3 text-sm text-black placeholder-gray/500 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition"
                   />
                 </div>
                 <div>
-                  <label className="block text-gray-700 text-xs mb-1.5">Email</label>
+                  <label className="block text-black text-xs mb-1.5">Email</label>
                   <input
                     type="email"
                     placeholder="Email"
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm text-black placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors"
+                    className="w-full  border border-black/8  rounded-lg px-3 py-3 text-sm text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition"
                   />
                 </div>
               </div>
@@ -96,8 +99,8 @@ export default function ContactUs() {
                   placeholder="Briefly describe your project..."
                   value={formData.project}
                   onChange={(e) => setFormData({...formData, project: e.target.value})}
-                  rows="3"
-                  className="w-full bg-gray-50 border border-gray-300 rounded-lg px-3 py-2 text-sm text-black placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors resize-none"
+                  rows="4"
+                  className="w-full border border-black/8   px-3 py-3 text-sm text-black placeholder-black/50 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition resize-none"
                 ></textarea>
               </div>
 
@@ -119,21 +122,29 @@ export default function ContactUs() {
                         type="checkbox"
                         checked={formData.services.includes(service)}
                         onChange={() => handleCheckbox(service)}
-                        className="w-3.5 h-3.5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                        className="w-4 h-4 rounded border-white/20 bg-black/20 text-black focus:ring-orange-300"
                       />
-                      <span className="text-gray-700 text-xs">{service}</span>
+                      <span className="text-black text-xs">{service}</span>
                     </label>
                   ))}
                 </div>
               </div>
 
-              <button
-                type="submit"
-                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-2.5 rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md"
-              >
-                Send Message
-              </button>
+              <div>
+                <motion.button
+                  whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  className="w-full bg-black text-white font-semibold py-3 rounded-xl hover:from-orange-600 hover:to-pink-600 transition-all shadow-xl"
+                >
+                  {submitted ? 'Sent — Thanks!' : 'Send Message'}
+                </motion.button>
+              </div>
             </form>
+            {submitted && (
+              <div className="mt-4 p-3 rounded-md bg-green-800/40 text-green-200 text-sm">
+                Thanks — we received your message and will reply shortly.
+              </div>
+            )}
           </motion.div>
         </div>
       </div>
