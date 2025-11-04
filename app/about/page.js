@@ -3,12 +3,12 @@ export default function AboutPage() {
     <main className="min-h-screen bg-white text-black">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16 sm:py-20">
         {/* Two-column on large screens: right sidebar stays on the right */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           {/* Left: big headline */}
           <div className="lg:col-span-8">
             <div className="mb-6">
               <span className="inline-flex items-center gap-3 text-sm text-gray-700">
-                <span className="w-2 h-2 rounded-full bg-orange-500 inline-block" />
+                <span className="w-2 h-2 rounded-full bg-black inline-block" />
                 ABOUT US
               </span>
             </div>
@@ -25,13 +25,16 @@ export default function AboutPage() {
           </div>
 
           {/* Right sidebar: video on top, text anchored bottom */}
-          <div className="lg:col-span-4 flex flex-col items-start lg:items-end lg:justify-between lg:min-h-[420px]">
-            <div className="w-full lg:w-[320px] rounded-2xl overflow-hidden shadow-lg mb-6">
+          <div className="lg:col-span-4 flex flex-col items-start lg:items-end lg:justify-end  lg:min-h-[420px]">
+            <div className="w-full  rounded-2xl overflow-hidden shadow-lg mb-6">
               <video
-                className="w-full h-56 sm:h-64 object-cover"
-                controls
+                className="w-full h-50 sm:h-50 object-cover"
                 poster="/assets/demo/team.jpg"
                 src="https://www.w3schools.com/html/mov_bbb.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
               />
             </div>
 
