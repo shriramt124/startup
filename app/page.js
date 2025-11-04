@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Hero from "./components/Hero";
-import Navbar from "./components/Navbar";
 import WhoWeAre from "./components/WhoWeAre";
 import WhyChooseUs from "./components/WhyChooseUs";
 import TechStackSection from "./components/TechStackSection";
@@ -19,7 +18,6 @@ import Blogsmy from "./components/Blogsmy";
 import Testimonials from "./components/Testimonials";
 import ContactUs from "./components/ContactUs";
 import TextPressureComp from "./components/TextPressureComp";
-import Footer from "./components/Footer";
 import { TestimonialMy } from "./components/TestiMonialMy";
 import BlogSection from "./components/BlogSection";
 import FaqSection from "./components/FaqSection";
@@ -30,7 +28,6 @@ export default function Home() {
 
   return (
     <>
-      <Navbar />
       <section id="home">
         <Hero />
       </section>
@@ -41,11 +38,9 @@ export default function Home() {
       <DataStrategySection />
       <ApproachSection />
       <TestimonialMy />
-
       <BlogSection />
       <FaqSection />
       <ContactUs />
-      <Footer />
     </>
   );
 }

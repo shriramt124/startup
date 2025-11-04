@@ -6,31 +6,16 @@ import Link from 'next/link';
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const handleNavClick = (e, href) => {
-    e.preventDefault();
-    setIsMobileMenuOpen(false);
-    
-    const targetId = href.replace(/#/, '');
-    const targetElement = document.getElementById(targetId);
-    
-    if (targetElement) {
-      // The height of the sticky navbar
-      const navbarHeight = 70; // Approximate height of the header
-      const targetPosition = targetElement.offsetTop - navbarHeight;
-      
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
+  // Close mobile menu helper
+  const closeMobile = () => setIsMobileMenuOpen(false);
 
+  // Use proper routes for site pages
   const navLinks = [
-    { name: 'What we do', href: '#services' },
-    { name: 'Who we are', href: '#about' },
-    { name: 'Insights', href: '#insights' },
-    { name: 'Careers', href: '#careers' },
-    { name: 'Investors', href: '#investors' },
+    { name: 'Services', href: '/services' },
+    { name: 'About', href: '/about' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Careers', href: '/careers' },
+    { name: 'Investors', href: '/investors' },
   ];
 
   return (
@@ -46,17 +31,17 @@ export default function Navbar() {
           {/* Desktop Navigation Links - Center */}
           <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
+                onClick={closeMobile}
                 className="relative group cursor-pointer"
               >
                 <span className="text-xs xl:text-sm font-medium text-gray-700 hover:text-blue-700 transition-all duration-300">
                   {link.name}
                 </span>
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300 ease-out"></span>
-              </a>
+              </Link>
             ))}
           </div>
           
@@ -67,9 +52,9 @@ export default function Navbar() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </button>
-            <button className="px-4 xl:px-6 py-1.5 xl:py-2 rounded-md font-medium text-xs xl:text-sm transition-all duration-300 shadow-lg bg-blue-600 text-white hover:bg-blue-700">
+            <Link href="/contact" onClick={closeMobile} className="px-4 xl:px-6 py-1.5 xl:py-2 rounded-md font-medium text-xs xl:text-sm transition-all duration-300 shadow-lg bg-blue-600 text-white hover:bg-blue-700">
               Contact us
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -104,19 +89,19 @@ export default function Navbar() {
       >
         <div className="py-4 px-6 space-y-1 bg-white border-t border-gray-200">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
               href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
+              onClick={closeMobile}
               className="block px-4 py-3 text-gray-700 hover:text-blue-700 hover:bg-gray-100 rounded-lg transition-all duration-300 cursor-pointer"
             >
               {link.name}
-            </a>
+            </Link>
           ))}
           <div className="px-4 pt-3">
-            <button className="w-full px-6 py-3 bg-blue-600 text-white rounded-full font-medium text-sm shadow-lg hover:bg-blue-700 transition-all duration-300">
+            <Link href="/contact" onClick={closeMobile} className="w-full inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-full font-medium text-sm shadow-lg hover:bg-blue-700 transition-all duration-300">
               Contact us
-            </button>
+            </Link>
           </div>
         </div>
       </div>
