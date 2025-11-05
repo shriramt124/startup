@@ -12,10 +12,9 @@ export default function Navbar() {
   // Use proper routes for site pages
   const navLinks = [
     { name: 'Services', href: '/services' },
+    { name: 'Work', href: '/work' },
     { name: 'About', href: '/about' },
     { name: 'Blog', href: '/blog' },
-    { name: 'Careers', href: '/careers' },
-    { name: 'Investors', href: '/investors' },
   ];
 
   return (
