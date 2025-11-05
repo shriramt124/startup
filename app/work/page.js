@@ -3,6 +3,8 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import DataStrategySection from "../components/DataStrategySection";
+import {WhyChooseUs} from  "../about/page";
+import { ContactCTA } from "../about/page";
  
 const projects = [
   {
@@ -163,7 +165,8 @@ export default function WorkPage() {
         </div>
       </section>
 
-      <DataStrategySection />
+      <WhyChooseUs />
+       <ContactCTA />
     </div>
   );
 }

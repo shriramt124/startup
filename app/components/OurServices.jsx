@@ -91,8 +91,9 @@ export default function OurServices() {
             <div className="mt-4 sm:mt-6 py-2 sm:py-3 px-2">
               <div className="bg-white text-black rounded-md max-w-md">
                 <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-5">Delivering digital experiences through versatile subscription</p>
-                <a href="#" className="inline-block text-black text-sm sm:text-md font-semibold border-b border-black pb-0.5 hover:bg-black hover:text-white">
-                  LEARN MORE <span className="ml-2">↗</span>
+                <a href="#" className="relative inline-block text-black text-sm sm:text-md font-semibold border-b-2 border-black pb-1 overflow-hidden group">
+                  <span className="absolute inset-0 bg-black transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out -bottom-1"></span>
+                  <span className="relative z-10 group-hover:text-white transition-colors duration-500">LEARN MORE <span className="ml-2">↗</span></span>
                 </a>
               </div>
             </div>

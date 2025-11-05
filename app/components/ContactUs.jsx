@@ -29,30 +29,30 @@ export default function ContactUs() {
   };
 
   return (
-    <section className="bg-white text-black py-12 sm:py-16 md:py-20 relative">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-16 items-center">
+    <section className="bg-white text-black py-10 sm:py-12 md:py-16 lg:py-20 relative">
+      <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-10 md:gap-12 lg:gap-16 items-center">
           {/* Left Side - Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="space-y-4 sm:space-y-6"
+            className="space-y-3 sm:space-y-4 md:space-y-6"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold tracking-tight">
               <span className=" text-black  bg-clip-text  ">
                 Let's build
               </span>
               <br />
               <span className="text-black">something amazing</span>
             </h2>
-            <p className="text-sm sm:text-base lg:text-lg text-gray-900 max-w-lg">
+            <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-900 max-w-lg">
               Ready to transform your ideas into reality? Tell us about your project and we'll help you ship fast, beautifully, and with impact.
             </p>
             <div className="pt-2 sm:pt-4">
-              <p className="text-gray-400 mb-2 text-sm">Mail us at</p>
-              <a href="mailto:info@eficsy.com" className="text-lg sm:text-xl md:text-2xl font-semibold text-black hover:text-orange-300 transition-colors">
+              <p className="text-gray-400 mb-1 sm:mb-2 text-xs sm:text-sm">Mail us at</p>
+              <a href="mailto:info@eficsy.com" className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-black hover:text-orange-300 transition-colors">
                 info@eficsy.com
               </a>
             </div>
@@ -68,45 +68,45 @@ export default function ContactUs() {
           >
             <h3 className="text-lg font-semibold text-black mb-4">Get in touch</h3>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
               
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                 <div>
-                  <label className="block text-gray-800 text-xs mb-1.5">Your name</label>
+                  <label className="block text-gray-800 text-xs mb-1 sm:mb-1.5">Your name</label>
                   <input
                     type="text"
                     placeholder="Your name"
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    className="w-full   border border-black/8   px-3 py-3 text-sm text-black placeholder-gray/500 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition"
+                    className="w-full border border-black/8 rounded-lg px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm text-black placeholder-gray/500 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition"
                   />
                 </div>
                 <div>
-                  <label className="block text-black text-xs mb-1.5">Email</label>
+                  <label className="block text-black text-xs mb-1 sm:mb-1.5">Email</label>
                   <input
                     type="email"
                     placeholder="Email"
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="w-full  border border-black/8  rounded-lg px-3 py-3 text-sm text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition"
+                    className="w-full border border-black/8 rounded-lg px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-gray-700 text-xs mb-1.5">Project description</label>
+                <label className="block text-gray-700 text-xs mb-1 sm:mb-1.5">Project description</label>
                 <textarea
                   placeholder="Briefly describe your project..."
                   value={formData.project}
                   onChange={(e) => setFormData({...formData, project: e.target.value})}
                   rows="4"
-                  className="w-full border border-black/8   px-3 py-3 text-sm text-black placeholder-black/50 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition resize-none"
+                  className="w-full border border-black/8 rounded-lg px-2 sm:px-3 py-2 sm:py-3 text-xs sm:text-sm text-black placeholder-black/50 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition resize-none"
                 ></textarea>
               </div>
 
               <div>
-                <label className="block text-gray-700 text-xs mb-2">Services needed</label>
-                <div className="grid grid-cols-2 gap-2">
+                <label className="block text-gray-700 text-xs mb-1.5 sm:mb-2">Services needed</label>
+                <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
                   {[
                     'Website',
                     'Mobile App',
@@ -117,7 +117,7 @@ export default function ContactUs() {
                     'Web App',
                     'Other'
                   ].map((service) => (
-                    <label key={service} className="flex items-center gap-1.5 cursor-pointer">
+                    <label key={service} className="flex items-center gap-1 sm:gap-1.5 cursor-pointer">
                       <input
                         type="checkbox"
                         checked={formData.services.includes(service)}
@@ -134,9 +134,10 @@ export default function ContactUs() {
                 <motion.button
                   whileTap={{ scale: 0.98 }}
                   type="submit"
-                  className="w-full bg-black text-white font-semibold py-3 rounded-xl hover:from-orange-600 hover:to-pink-600 transition-all shadow-xl"
+                  className="relative w-full bg-black text-white font-semibold py-3 rounded-xl overflow-hidden group transition-all shadow-xl"
                 >
-                  {submitted ? 'Sent — Thanks!' : 'Send Message'}
+                  <span className="absolute inset-0 bg-gradient-to-r from-orange-500 to-pink-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
+                  <span className="relative z-10">{submitted ? 'Sent — Thanks!' : 'Send Message'}</span>
                 </motion.button>
               </div>
             </form>

@@ -38,43 +38,44 @@ export default function FaqSection() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section className="bg-white text-black py-16 sm:py-20 md:py-28">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-white text-black py-12 sm:py-16 md:py-20 lg:py-28">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         {/* Heading row */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 items-start lg:items-end mb-8 sm:mb-10 md:mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-10 items-start lg:items-end mb-6 sm:mb-8 md:mb-10 lg:mb-12">
           <div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-[1.05] tracking-tight">
               Frequently Asked
             <br />
               Questions
             </h2>
           </div>
           <div className="lg:text-right">
-            <p className="text-sm sm:text-base text-gray-600 max-w-md lg:ml-auto">
+            <p className="text-xs sm:text-sm md:text-base text-gray-600 max-w-md lg:ml-auto">
               Our services help you create digital products. Stay ahead of the curve with our latest insights, tips, and industry trends.
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-start">
           {/* Left: image with CTA card */}
-          <div className="relative rounded-xl overflow-hidden bg-gray-100 min-h-[320px] sm:min-h-[400px] lg:max-h-[500px]">
+          <div className="relative rounded-xl overflow-hidden bg-gray-100 min-h-[280px] sm:min-h-[320px] md:min-h-[400px] lg:max-h-[500px]">
             <img
               src="longimage.jpg"
               alt="Support agent"
               className="w-full h-full object-cover"
             />
             {/* CTA card */}
-            <div className="absolute bottom-6 left-6 bg-white rounded-md shadow-xl max-w-[360px] p-4 sm:p-6 ">
-              <p className="text-xl sm:text-2xl font-semibold mb-2">Need More Info?</p>
-              <p className="text-gray-600 text-sm mb-5 text-sm">
+            <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 bg-white rounded-md shadow-xl max-w-[280px] sm:max-w-[360px] p-3 sm:p-4 md:p-6">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold mb-1 sm:mb-2">Need More Info?</p>
+              <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 md:mb-5">
                 Didn’t find what you were looking for? Let’s chat and solve it together!
               </p>
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center px-3 sm:px-5 sm:py-3 py-2 rounded-md bg-black text-white font-semibold shadow hover:brightness-95 transition"
+                className="relative inline-flex items-center justify-center px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-3 rounded-md bg-black text-white font-semibold text-xs sm:text-sm shadow overflow-hidden group transition-all hover:scale-105"
               >
-                Contact us
+                <span className="absolute inset-0 bg-orange-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
+                <span className="relative z-10">Contact us</span>
               </a>
             </div>
           </div>
@@ -85,13 +86,13 @@ export default function FaqSection() {
               {faqs.map((item, idx) => {
                 const isOpen = open === idx;
                 return (
-                  <li key={idx} className="py-6">
+                  <li key={idx} className="py-4 sm:py-5 md:py-6">
                     <button
-                      className="w-full flex items-start gap-6 text-left"
+                      className="w-full flex items-start gap-4 sm:gap-6 text-left"
                       onClick={() => setOpen(isOpen ? -1 : idx)}
                       aria-expanded={isOpen}
                     >
-                      <span className="text-lg  font-semibold flex-1 leading-snug">
+                      <span className="text-base sm:text-lg font-semibold flex-1 leading-snug">
                         {item.q}
                       </span>
                       <span className="shrink-0 mt-1 text-gray-600">

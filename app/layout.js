@@ -29,7 +29,6 @@ export default function RootLayout({ children }) {
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        style={{ fontFamily: "'Brandon Grotesque', sans-serif" }}
       >
         <Navbar />
         {children}

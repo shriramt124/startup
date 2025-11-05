@@ -61,8 +61,9 @@ export default function WhoWeAre() {
                         </div>
 
                         {/* CTA Button */}
-                        <button className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-lg transition-all duration-300 shadow-lg hover:shadow-blue-500/50">
-                            OUR TEAM
+                        <button className="relative px-6 py-2 bg-blue-600 text-white font-bold text-sm rounded-lg overflow-hidden group transition-all duration-300 shadow-lg hover:shadow-blue-500/50 hover:scale-105">
+                            <span className="absolute inset-0 bg-black transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
+                            <span className="relative z-10">OUR TEAM</span>
                         </button>
                     </div>
 
