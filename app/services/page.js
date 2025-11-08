@@ -132,7 +132,7 @@ function ServicesHero() {
             ref={titleRef}
             className="lg:col-span-7 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.05] tracking-tight"
           >
-            {splitText("Your partner for strategy, engineering & AI adoption")}
+            {splitText("Transform your business with data-driven solutions and intelligent automation")}
           </h1>
           
           <div className="lg:col-span-5 space-y-4 sm:space-y-6">
@@ -140,9 +140,9 @@ function ServicesHero() {
               ref={subtitleRef}
               className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed"
             >
-              From boardroom ambition to bottom-line results, we deliver AI where it
-              drives real value. We align strategy, design, and engineering to build
-              systems that scale with your business.
+              We specialize in data engineering, advanced analytics, cutting-edge design, 
+              AI strategy, and intelligent automation to help your business innovate, 
+              scale, and succeed in the digital age.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4">
@@ -215,7 +215,7 @@ export default function ServicesPage() {
         ],
         ctaText: "Learn more",
         ctaHref: "/contact",
-        image: "/assets/demo/cs1.webp",
+        image: "/services/data-engineering.jpg",
         imageLeft: false,
       },
       {
@@ -235,7 +235,7 @@ export default function ServicesPage() {
         ],
         ctaText: "Explore analytics",
         ctaHref: "/contact",
-        image: "/assets/demo/cs2.webp",
+        image: "/services/data-analytics.jpg",
         imageLeft: true,
       },
       {
@@ -255,7 +255,7 @@ export default function ServicesPage() {
         ],
         ctaText: "See our work",
         ctaHref: "/contact",
-        image: "/assets/demo/cs3.webp",
+        image: "/services/design-development.jpg",
         imageLeft: false,
       },
       {
@@ -275,7 +275,7 @@ export default function ServicesPage() {
         ],
         ctaText: "Get started",
         ctaHref: "/contact",
-        image: "/assets/demo/cs1.webp",
+        image: "/services/ai-strategy.jpg",
         imageLeft: true,
       },
       {
@@ -295,7 +295,7 @@ export default function ServicesPage() {
         ],
         ctaText: "Automate now",
         ctaHref: "/contact",
-        image: "/assets/demo/cs2.webp",
+        image: "/services/ai-automation.jpg",
         imageLeft: false,
       },
     ],
@@ -382,7 +382,9 @@ function ServiceStackCard({ index, count, progress, id, label, title, descriptio
 
             {/* Content column */}
             <div className="max-w-xl">
-              <div className="text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] text-gray-500 mb-2 sm:mb-3">/{label}</div>
+              <div className="inline-block bg-black text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-md mb-3 sm:mb-4">
+                <span className="text-[10px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] font-semibold">{label}</span>
+              </div>
               <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold leading-tight mb-2 sm:mb-3">{title}</h3>
               <p className="text-sm sm:text-base lg:text-lg text-gray-700 mb-4 sm:mb-5">{description}</p>
 
