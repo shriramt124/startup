@@ -60,8 +60,8 @@ export default function Navbar() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </button>
-            <Link href="/contact" onClick={closeMobile} className="relative px-4 xl:px-6 py-1.5 xl:py-2 rounded-md font-medium text-xs xl:text-sm overflow-hidden group transition-all duration-300 shadow-lg bg-blue-600 text-white hover:scale-105">
-              <span className="absolute inset-0 bg-black transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
+            <Link href="/contact" onClick={closeMobile} className="relative px-4 xl:px-6 py-1.5 xl:py-2 rounded-full font-medium text-xs xl:text-sm overflow-hidden group transition-all duration-300 shadow-lg bg-black text-white hover:scale-105">
+              <span className="absolute inset-0 bg-green-700 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
               <span className="relative z-10">Contact us</span>
             </Link>
           </div>
@@ -108,8 +108,8 @@ export default function Navbar() {
             </Link>
           ))}
           <div className="px-4 pt-3">
-            <Link href="/contact" onClick={closeMobile} className="relative w-full inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-full font-medium text-sm shadow-lg overflow-hidden group transition-all duration-300 hover:scale-105">
-              <span className="absolute inset-0 bg-black transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
+            <Link href="/contact" onClick={closeMobile} className="relative w-full inline-flex items-center justify-center px-6 py-3 bg-black text-white rounded-full font-medium text-sm shadow-lg overflow-hidden group transition-all duration-300 hover:scale-105">
+              <span className="absolute inset-0 bg-green-700 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
               <span className="relative z-10">Contact us</span>
             </Link>
           </div>
