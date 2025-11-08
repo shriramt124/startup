@@ -219,7 +219,7 @@ export default function Hero() {
             </h2>
           </div>
 
-          <div className="lg:col-span-4 flex justify-center lg:justify-end">
+          <div className="hidden lg:flex lg:col-span-4 justify-center lg:justify-end">
             <div className="w-full max-w-[420px] rounded-sm overflow-hidden shadow-sm">
               <Image src="/h.jpg" alt="Office" width={420} height={260} className="object-cover w-full h-auto" />
             </div>
