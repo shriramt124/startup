@@ -1,6 +1,7 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import { motion } from "framer-motion";
+import { gsap } from 'gsap';
 
 export default function BlogSection() {
   const posts = [
@@ -32,6 +33,16 @@ export default function BlogSection() {
       image: "https://images.unsplash.com/photo-1503602642458-232111445657?w=1200&q=80&auto=format&fit=crop",
     },
   ];
+
+  const imageRefs = useRef([]);
+
+  const handleMouseEnter = (index) => {
+    gsap.to(imageRefs.current[index], { scale: 1.2, duration: 0.3, ease: 'power2.out' });
+  };
+
+  const handleMouseLeave = (index) => {
+    gsap.to(imageRefs.current[index], { scale: 1, duration: 0.3, ease: 'power2.out' });
+  };
 
   return (
     <section className="bg-black text-white py-15 sm:py-24">
@@ -73,9 +84,12 @@ export default function BlogSection() {
                 hidden: { opacity: 0, y: 18 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.2, 0.8, 0.2, 1] } },
               }}
+              onMouseEnter={() => handleMouseEnter(i)}
+              onMouseLeave={() => handleMouseLeave(i)}
             >
               <div className="relative overflow-hidden">
                 <img
+                  ref={(el) => (imageRefs.current[i] = el)}
                   src={p.image}
                   alt={p.title}
                   className="w-full h-40 sm:h-48 md:h-56 object-cover transform transition-transform duration-700 group-hover:scale-105"

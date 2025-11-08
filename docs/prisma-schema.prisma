@@ -1,0 +1,108 @@
+// Example Prisma schema matching BACKEND_SPEC.md
+// Use `npx prisma init` in your backend project and replace schema.prisma contents with this.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role { ADMIN EDITOR }
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  role      Role     @default(ADMIN)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id    String @id @default(cuid())
+  slug  String @unique
+  name  String @unique
+  posts Post[]
+}
+
+model Post {
+  id          String     @id @default(cuid())
+  slug        String     @unique
+  title       String
+  excerpt     String?
+  content     String
+  coverUrl    String?
+  readTimeMin Int        @default(3)
+  published   Boolean    @default(false)
+  publishedAt DateTime?
+  categories  Category[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Project {
+  id        String   @id @default(cuid())
+  title     String
+  tag       String?
+  summary   String?
+  imageUrl  String?
+  createdAt DateTime @default(now())
+}
+
+model Faq {
+  id        String  @id @default(cuid())
+  question  String
+  answer    String
+  order     Int     @default(0)
+}
+
+model Testimonial {
+  id       String  @id @default(cuid())
+  name     String
+  role     String?
+  avatar   String?
+  text     String
+}
+
+model JobPosting {
+  id          String   @id @default(cuid())
+  title       String
+  department  String?
+  location    String?
+  type        String?
+  description String
+  isOpen      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  applications JobApplication[]
+}
+
+model JobApplication {
+  id        String     @id @default(cuid())
+  jobId     String
+  job       JobPosting @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  name      String
+  email     String
+  message   String?
+  resumeUrl String
+  createdAt DateTime   @default(now())
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  services  String[]
+  project   String?
+  message   String?
+  createdAt DateTime  @default(now())
+}
+
+model Subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime  @default(now())
+}

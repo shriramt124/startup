@@ -126,11 +126,11 @@ export default function Hero() {
             <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-2 xs:mb-3 sm:mb-4 drop-shadow-lg">{slides[currentSlide].title}</h1>
             <p className="text-xs xs:text-sm sm:text-base md:text-lg text-gray-200 max-w-2xl mb-3 xs:mb-4 sm:mb-6">{slides[currentSlide].description}</p>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 xs:gap-3 sm:gap-4">
-              <button className="relative inline-flex items-center px-3 xs:px-4 sm:px-6 py-1.5 xs:py-2 sm:py-3 text-xs xs:text-sm sm:text-base rounded-full bg-white text-black font-semibold overflow-hidden group transition-all hover:scale-[1.02] w-full sm:w-auto justify-center">
+              <button className="relative inline-flex items-center px-3 xs:px-4 sm:px-6 py-1.5 xs:py-2 sm:py-3 text-xs xs:text-sm   rounded-full bg-white text-black font-semibold overflow-hidden group transition-all hover:scale-[1.02] w-full sm:w-auto justify-center">
                 <span className="absolute inset-0 bg-black transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
                 <span className="relative z-10 group-hover:text-white transition-colors duration-500">{slides[currentSlide].buttonText}</span>
               </button>
-              <button className="relative inline-flex items-center px-2 xs:px-3 sm:px-4 py-1.5 xs:py-2 text-xs xs:text-sm sm:text-base rounded-full border border-white text-white/90 overflow-hidden group transition w-full sm:w-auto justify-center">
+              <button className="relative inline-flex items-center px-2 xs:px-3 sm:px-4 py-1.5 xs:py-2 text-xs xs:text-sm  rounded-full border border-white text-white/90 overflow-hidden group transition w-full sm:w-auto justify-center">
                 <span className="absolute inset-0 bg-white transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
                 <span className="relative z-10 group-hover:text-black transition-colors duration-500">Learn more</span>
               </button>
@@ -221,7 +221,7 @@ export default function Hero() {
 
           <div className="lg:col-span-4 flex justify-center lg:justify-end">
             <div className="w-full max-w-[420px] rounded-sm overflow-hidden shadow-sm">
-              <Image src="/assets/demo/cs1.webp" alt="Office" width={420} height={260} className="object-cover w-full h-auto" />
+              <Image src="/h.jpg" alt="Office" width={420} height={260} className="object-cover w-full h-auto" />
             </div>
           </div>
         </div>
@@ -232,9 +232,9 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 xs:gap-6 sm:gap-8 items-center">
           {/* Left image */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-6">
             <div className="overflow-hidden rounded-md shadow-sm">
-              <Image src="/assets/demo/cs2.webp" alt="Developer working" width={980} height={620} className="w-full h-auto object-cover" />
+              <Image src="/h2.jpg" alt="Developer working" width={580} height={420} className="object-cover w-full h-auto " />
             </div>
           </div>
 
@@ -246,7 +246,7 @@ export default function Hero() {
 
             <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
               <button className="relative inline-flex items-center justify-center px-3 py-2 text-sm sm:text-md bg-black text-white rounded-md font-medium shadow-sm overflow-hidden group">
-                <span className="absolute inset-0 bg-orange-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
+                <span className="absolute inset-0 bg-green-700 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
                 <span className="relative z-10">Free Discovery Call</span>
                 <span className="ml-2 sm:ml-3 relative z-10 inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 bg-white/10 rounded">
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
@@ -261,10 +261,8 @@ export default function Hero() {
                 </span>
               </button>
             </div>
-
-            <div className="pt-4 border-t border-gray-200">
-              <div className="text-xs text-gray-400 uppercase mb-4">Trusted by</div>
-
+            <div className="pt-4   border-t border-gray-200">
+              <div className="text-xs text-gray-400 uppercase mb-4 sm:mb-7">Trusted by</div>
               {/* Marquee slider (replaces static faded row) */}
               <div className="overflow-hidden mb-6">
                 <div className="marquee flex items-center gap-8">
@@ -275,7 +273,6 @@ export default function Hero() {
                     <Image src="/assets/demo/cs3.webp" alt="logo 3" width={140} height={48} className="object-contain" />
                     <Image src="/assets/demo/cs1.webp" alt="logo 4" width={140} height={48} className="object-contain" />
                   </div>
-
                   {/* logos set B (duplicate) */}
                   <div className="flex items-center gap-8">
                     <Image src="/assets/demo/cs1.webp" alt="logo 1" width={140} height={48} className="object-contain" />
@@ -284,19 +281,12 @@ export default function Hero() {
                     <Image src="/assets/demo/cs1.webp" alt="logo 4" width={140} height={48} className="object-contain" />
                   </div>
                 </div>
-
-                {/* Moved marquee styles to global CSS (app/globals.css) to avoid styled-jsx hydration class-hash mismatches */}
               </div>
- 
-        
             </div>
           </div>
         </div>
       </div>
     </section>
-   
-    {/* Challenges moved to separate component */}
-
     </>
   );
 }

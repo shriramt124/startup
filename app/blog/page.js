@@ -1,67 +1,63 @@
-"use client";
-
-import { useMemo, useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import BlogHero from '../components/BlogHero';
 import { ContactCTA } from '../about/page';
+import BlogHero from '../components/BlogHero';
+import Image from 'next/image';
+import { apiUrl } from '../../lib/api';
 
-const posts = [
-  {
-    slug: 'why-webflow',
-    title: 'Why Webflow is Our Go-To Platform for our Modern Websites',
-    image: '/assets/demo/cs1.webp',
-    category: 'Website',
-    date: 'January 12, 2025',
-    readTime: '3 min read',
-  },
-  {
-    slug: 'purposeful-branding',
-    title: 'The Power of Purposeful Branding of our Strategy in Action',
-    image: '/assets/demo/cs2.webp',
-    category: 'Design',
-    date: 'February 12, 2025',
-    readTime: '3 min read',
-  },
-  {
-    slug: 'visual-storytelling',
-    title: 'Visual Storytelling: The Secret to of the Emotional Connection',
-    image: '/assets/demo/cs3.webp',
-    category: 'AI',
-    date: 'March 12, 2025',
-    readTime: '3 min read',
-  },
-];
+async function getPosts() {
+  try {
+    // Ensure this port matches the one your 'next-tiptap' project is running on
+    const res = await fetch(apiUrl('/api/v1/posts?published=true'), {
+      next: { revalidate: 60 } // Revalidate every 60 seconds
+    });
+    console.log("response status:", res.status);
+    console.log("response ok:", res.ok);
 
-const categories = ['All', 'Design', 'AI', 'Website'];
+    if (!res.ok) {
+      console.error('Failed to fetch posts:', res.status, await res.text());
+      return { posts: [], categories: [] };
+    }
 
-export default function BlogPage() {
-  // Pagination config
-  const perPage = 3; // items per page
-  const [currentPage, setCurrentPage] = useState(1);
+    const data = await res.json();
+    console.log("Full API response:", JSON.stringify(data, null, 2));
+    console.log("data.data:", data.data);
+    console.log("data.data?.items:", data.data?.items);
+    
+    const posts = data.data?.items || [];
+    console.log("Posts array:", posts);
+    console.log("Posts length:", posts.length);
+    
+    // Dynamically extract categories from posts
+    const categories = ['All', ...new Set(posts.map(p => p.category?.name).filter(Boolean))];
 
-  const totalPages = useMemo(() => Math.max(1, Math.ceil(posts.length / perPage)), [perPage]);
-  const paginatedPosts = useMemo(() => {
-    const start = (currentPage - 1) * perPage;
-    return posts.slice(start, start + perPage);
-  }, [currentPage, perPage]);
+    return { posts, categories };
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+    return { posts: [], categories: ['All'] };
+  }
+}
 
-  // Simple helpers
-  const goToPage = (p) => setCurrentPage(Math.min(Math.max(1, p), totalPages));
+export default async function BlogPage() {
+  const { posts, categories } = await getPosts();
 
+  // Note: Pagination logic would need to be re-implemented,
+  // possibly with server-side logic or more complex client-side state.
+  // For now, we will display all fetched posts.
+  console.log(posts ,"from the blog page")
+  
   return (
     <main className="min-h-screen bg-white text-black">
       {/* Blog hero slider */}
-      <BlogHero />
+      <BlogHero posts={posts.slice(0, 3)} />
 
       {/* Articles Section */}
-      <section className="py-16 sm:py-20 lg:py-24">
+      <section className="py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           {/* Header */}
           <div className="mb-12">
             <p className="text-xs sm:text-sm font-medium text-gray-600 uppercase tracking-wider mb-3">• Articles</p>
             <h2 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-2">
-              <span className="text-orange-500">Read new</span>
+              <span className="text-green-700">Read new</span>
             </h2>
             <h3 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-black">
               news & more
@@ -86,18 +82,19 @@ export default function BlogPage() {
 
           {/* Posts Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {paginatedPosts.map((post) => (
+            {posts.map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
                 className="group cursor-pointer"
               >
                 {/* Card */}
-                <div className="rounded-2xl overflow-hidden bg-gray-50 hover:bg-gray-100 transition-colors">
+                <div className="rounded-2xl overflow-hidden bg-gray-50 hover:bg-gray-100 transition-colors relative group">
+                  <div className="absolute inset-0 bg-black transform -translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
                   {/* Image Container */}
-                  <div className="relative w-full h-56 overflow-hidden rounded-2xl">
+                  <div className="relative w-full h-56 overflow-hidden rounded-2xl z-10">
                     <Image
-                      src={post.image}
+                      src={post.coverImageUrl || '/assets/demo/cs1.webp'}
                       alt={post.title}
                       fill
                       className="object-cover group-hover:scale-[1.03] transition-transform duration-300"
@@ -105,19 +102,21 @@ export default function BlogPage() {
                   </div>
 
                   {/* Content */}
-                  <div className="p-5 sm:p-6">
+                  <div className="p-5 sm:p-6 relative z-10">
                     {/* Metadata */}
-                    <div className="flex items-center gap-3 mb-4 text-xs sm:text-sm text-gray-500">
+                    <div className="flex items-center gap-3 mb-4 text-xs sm:text-sm text-gray-500 group-hover:text-gray-300 transition-colors duration-300">
                       <span className="flex items-center gap-1">
-                        📅 {post.date}
+                        📅 {new Date(post.publishedAt || post.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                       </span>
-                      <span className="flex items-center gap-1">
-                        ⏱️ {post.readTime}
-                      </span>
+                      {post.readTime && (
+                        <span className="flex items-center gap-1">
+                          ⏱️ {post.readTime} min read
+                        </span>
+                      )}
                     </div>
 
                     {/* Title */}
-                    <h4 className="text-lg sm:text-xl font-bold leading-tight text-black group-hover:text-orange-500 transition-colors">
+                    <h4 className="text-lg sm:text-xl font-bold leading-tight text-black group-hover:text-white transition-colors duration-300">
                       {post.title}
                     </h4>
                   </div>
@@ -126,54 +125,8 @@ export default function BlogPage() {
             ))}
           </div>
 
-          {/* Pagination Controls */}
-          <div className="mt-10 flex items-center justify-center gap-2">
-            {/* Prev */}
-            <button
-              onClick={() => goToPage(currentPage - 1)}
-              disabled={currentPage === 1}
-              className={`px-3 py-2 rounded-lg text-sm font-semibold border transition-colors ${
-                currentPage === 1
-                  ? 'text-gray-400 border-gray-200 cursor-not-allowed'
-                  : 'text-black border-gray-300 hover:bg-gray-100'
-              }`}
-            >
-              Prev
-            </button>
-
-            {/* Page numbers */}
-            {Array.from({ length: totalPages }).map((_, i) => {
-              const page = i + 1;
-              const isActive = page === currentPage;
-              return (
-                <button
-                  key={page}
-                  onClick={() => goToPage(page)}
-                  aria-current={isActive ? 'page' : undefined}
-                  className={`w-9 h-9 rounded-lg text-sm font-semibold border transition-colors ${
-                    isActive
-                      ? 'bg-black text-white border-black'
-                      : 'text-black border-gray-300 hover:bg-gray-100'
-                  }`}
-                >
-                  {page}
-                </button>
-              );
-            })}
-
-            {/* Next */}
-            <button
-              onClick={() => goToPage(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              className={`px-3 py-2 rounded-lg text-sm font-semibold border transition-colors ${
-                currentPage === totalPages
-                  ? 'text-gray-400 border-gray-200 cursor-not-allowed'
-                  : 'text-black border-gray-300 hover:bg-gray-100'
-              }`}
-            >
-              Next
-            </button>
-          </div>
+          {/* Pagination Controls - Temporarily disabled as we fetch all posts */}
+          {/* You can add client-side pagination here if needed */}
         </div>
       </section>
 

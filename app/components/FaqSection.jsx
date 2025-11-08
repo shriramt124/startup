@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
+import { gsap } from 'gsap';
 
 export default function FaqSection() {
   const faqs = [
@@ -36,6 +37,31 @@ export default function FaqSection() {
   ];
 
   const [open, setOpen] = useState(0);
+  const cardRef = useRef(null);
+
+  const handleMouseEnter = () => {
+    gsap.to(cardRef.current, {
+      scale: 1.5,
+      left: '50%',
+      bottom: '50%',
+      x: '-50%',
+      y: '50%',
+      duration: 0.5,
+      ease: 'power2.out'
+    });
+  };
+
+  const handleMouseLeave = () => {
+    gsap.to(cardRef.current, {
+      scale: 1,
+      left: '1rem',
+      bottom: '1rem',
+      x: 0,
+      y: 0,
+      duration: 0.5,
+      ease: 'power2.out'
+    });
+  };
 
   return (
     <section className="bg-white text-black py-12 sm:py-16 md:py-20 lg:py-28">
@@ -58,14 +84,14 @@ export default function FaqSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-start">
           {/* Left: image with CTA card */}
-          <div className="relative rounded-xl overflow-hidden bg-gray-100 min-h-[280px] sm:min-h-[320px] md:min-h-[400px] lg:max-h-[500px]">
+          <div className="relative rounded-xl overflow-hidden bg-gray-100 min-h-[280px] sm:min-h-[320px] md:min-h-[400px] lg:max-h-[500px]" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <img
               src="longimage.jpg"
               alt="Support agent"
               className="w-full h-full object-cover"
             />
             {/* CTA card */}
-            <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 bg-white rounded-md shadow-xl max-w-[280px] sm:max-w-[360px] p-3 sm:p-4 md:p-6">
+            <div ref={cardRef} className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 bg-white rounded-md shadow-xl max-w-[280px] sm:max-w-[360px] p-3 sm:p-4 md:p-6">
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold mb-1 sm:mb-2">Need More Info?</p>
               <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 md:mb-5">
                 Didn’t find what you were looking for? Let’s chat and solve it together!
@@ -74,7 +100,7 @@ export default function FaqSection() {
                 href="#contact"
                 className="relative inline-flex items-center justify-center px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-3 rounded-md bg-black text-white font-semibold text-xs sm:text-sm shadow overflow-hidden group transition-all hover:scale-105"
               >
-                <span className="absolute inset-0 bg-orange-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
+                <span className="absolute inset-0 bg-green-800 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
                 <span className="relative z-10">Contact us</span>
               </a>
             </div>

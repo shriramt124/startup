@@ -12,6 +12,8 @@
 
 # testing
 /coverage
+./next-tiptap
+next-tiptap
 
 # next.js
 /.next/

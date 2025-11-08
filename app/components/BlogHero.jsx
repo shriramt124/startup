@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-// Simple, self-contained blog hero slider inspired by the site hero, but tuned for articles
+// Default featured items, used as a fallback
 const featured = [
   {
     slug: "/blog/how-we-work",
@@ -31,11 +31,25 @@ const featured = [
   },
 ];
 
-export default function BlogHero({ items = featured, auto = 6500 }) {
+export default function BlogHero({ posts = [], auto = 6500 }) {
   const [i, setI] = useState(0);
   const timer = useRef();
 
+  // Map incoming posts to the format the slider expects.
+  // If no posts are provided, use the default 'featured' array.
+  const items = posts.length > 0 ? posts.map(p => ({
+    slug: `/blog/${p.slug}`,
+    title: p.title,
+    excerpt: p.excerpt || 'Read more about this topic.',
+    image: p.coverImageUrl || '/assets/demo/cs1.webp',
+    tag: p.category?.name || 'General'
+  })) : featured;
+
+  console.log("posts from hero ",posts);
+
   useEffect(() => {
+    // Guard against empty items array
+    if (items.length === 0) return;
     timer.current = setTimeout(() => setI((s) => (s + 1) % items.length), auto);
     return () => clearTimeout(timer.current);
   }, [i, items.length, auto]);
@@ -44,6 +58,11 @@ export default function BlogHero({ items = featured, auto = 6500 }) {
     clearTimeout(timer.current);
     setI(idx);
   };
+
+  // Don't render anything if there are no items to display
+  if (items.length === 0) {
+    return null;
+  }
 
   return (
     <section className="relative w-full h-[68vh] md:h-[60vh] lg:h-[56vh] overflow-hidden">

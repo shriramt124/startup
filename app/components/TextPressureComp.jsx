@@ -1,5 +1,5 @@
-import Ribbons from "@/components/Ribbons";
-import TextPressure from "@/components/TextPressure";
+import Ribbons from "../../components/Ribbons";
+import TextPressure from "../../components/TextPressure";
 
 
 

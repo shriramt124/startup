@@ -1,0 +1,239 @@
+openapi: 3.0.3
+info:
+  title: Startup Site API
+  version: 1.0.0
+servers:
+  - url: https://api.example.com/api/v1
+paths:
+  /posts:
+    get:
+      summary: List blog posts
+      parameters:
+        - in: query
+          name: page
+          schema: { type: integer, minimum: 1, default: 1 }
+        - in: query
+          name: pageSize
+          schema: { type: integer, minimum: 1, maximum: 100, default: 9 }
+        - in: query
+          name: category
+          schema: { type: string }
+        - in: query
+          name: search
+          schema: { type: string }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/Post' }
+                  page: { type: integer }
+                  pageSize: { type: integer }
+                  total: { type: integer }
+  /posts/{slug}:
+    get:
+      summary: Get post by slug
+      parameters:
+        - in: path
+          name: slug
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Post' }
+        '404': { description: Not found }
+  /categories:
+    get:
+      summary: List categories
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Category' }
+  /projects:
+    get:
+      summary: List projects
+      parameters:
+        - in: query
+          name: page
+          schema: { type: integer, default: 1 }
+        - in: query
+          name: pageSize
+          schema: { type: integer, default: 6 }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/Project' }
+                  page: { type: integer }
+                  pageSize: { type: integer }
+                  total: { type: integer }
+  /faqs:
+    get:
+      summary: List FAQs
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Faq' }
+  /testimonials:
+    get:
+      summary: List testimonials
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Testimonial' }
+  /jobs:
+    get:
+      summary: List job postings
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/JobPosting' }
+  /applications:
+    post:
+      summary: Submit a job application
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name: { type: string }
+                email: { type: string, format: email }
+                jobId: { type: string }
+                message: { type: string }
+                resume:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: { ok: { type: boolean }, id: { type: string } }
+  /contact:
+    post:
+      summary: Submit a contact message
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ContactMessageRequest' }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: { ok: { type: boolean }, id: { type: string } }
+  /subscribe:
+    post:
+      summary: Subscribe to newsletter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: { type: string, format: email }
+      responses:
+        '200': { description: OK }
+components:
+  schemas:
+    Category:
+      type: object
+      properties:
+        slug: { type: string }
+        name: { type: string }
+    Post:
+      type: object
+      properties:
+        id: { type: string }
+        slug: { type: string }
+        title: { type: string }
+        excerpt: { type: string }
+        content: { type: string }
+        coverUrl: { type: string, format: uri }
+        readTimeMin: { type: integer }
+        publishedAt: { type: string, format: date-time }
+        categories:
+          type: array
+          items: { $ref: '#/components/schemas/Category' }
+    Project:
+      type: object
+      properties:
+        id: { type: string }
+        title: { type: string }
+        tag: { type: string }
+        summary: { type: string }
+        imageUrl: { type: string, format: uri }
+    Faq:
+      type: object
+      properties:
+        id: { type: string }
+        question: { type: string }
+        answer: { type: string }
+        order: { type: integer }
+    Testimonial:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        role: { type: string }
+        avatar: { type: string, format: uri }
+        text: { type: string }
+    JobPosting:
+      type: object
+      properties:
+        id: { type: string }
+        title: { type: string }
+        department: { type: string }
+        location: { type: string }
+        type: { type: string }
+        description: { type: string }
+        isOpen: { type: boolean }
+    ContactMessageRequest:
+      type: object
+      required: [name, email]
+      properties:
+        name: { type: string }
+        email: { type: string, format: email }
+        services:
+          type: array
+          items: { type: string }
+        project: { type: string }
+        message: { type: string }

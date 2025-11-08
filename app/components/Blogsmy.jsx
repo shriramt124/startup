@@ -1,4 +1,4 @@
-import FUIBentoGridDark from "@/components/bento";
+import FUIBentoGridDark from "../../components/bento";
 
 
 
