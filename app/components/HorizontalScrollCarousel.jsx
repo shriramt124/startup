@@ -93,8 +93,8 @@ export default function HorizontalScrollCarousel() {
       <div className="pt-16 ">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4">
-            From data insights
-            <br className="hidden sm:block" /> to intelligent action.
+            The values that
+            <br className="hidden sm:block" /> drive everything we do.
           </h2>
            
         </div>
