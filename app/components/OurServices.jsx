@@ -118,7 +118,7 @@ export default function OurServices() {
                 </p>
                 <a
                   href="#"
-                  className="relative inline-flex items-center justify-center bg-black text-white font-semibold py-2 px-4 text-sm rounded-full overflow-hidden group"
+                  className="relative inline-flex items-center justify-center bg-black text-white font-semibold py-2 px-4 text-xs rounded-full overflow-hidden group"
                 >
                   <span className="absolute inset-0 bg-green-700 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
                   <span className="relative z-10 transition-colors duration-500">
