@@ -128,16 +128,18 @@ export default function ApproachSection() {
             <div ref={buttonRef} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <a
                 href="#"
-                className="bg-white text-black px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-full font-semibold inline-flex items-center justify-center gap-2 sm:gap-3"
+                className="relative bg-black text-white px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-full font-semibold inline-flex items-center justify-center gap-2 sm:gap-3 overflow-hidden group"
               >
-                View Our Work
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 sm:w-4 sm:h-4">
+                <span className="absolute inset-0 bg-green-700 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
+                <span className="relative z-10">View Our Work</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 sm:w-4 sm:h-4 relative z-10">
                   <path d="M5 12h14"></path>
                   <path d="M12 5l7 7-7 7"></path>
                 </svg>
               </a>
-              <a href="#contact" className="text-white border border-white/20 px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-full inline-flex items-center justify-center gap-2">
-                Free Consultation
+              <a href="#contact" className="relative text-white border border-white/20 px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-full inline-flex items-center justify-center gap-2 overflow-hidden group">
+                <span className="absolute inset-0 bg-white transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
+                <span className="relative z-10 group-hover:text-black transition-colors duration-500">Free Consultation</span>
               </a>
             </div>
           </div>

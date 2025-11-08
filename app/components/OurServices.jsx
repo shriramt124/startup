@@ -133,8 +133,9 @@ export default function OurServices() {
                         <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 bg-gradient-to-t from-black/90 to-transparent translate-y-0 transition-transform duration-300 ease-in-out z-20 group-hover:-translate-y-3">
                           <h3 className="text-white text-base sm:text-lg md:text-xl font-semibold mb-1 sm:mb-2">{service.title}</h3>
                           <p className="text-white text-sm sm:text-base mb-2 sm:mb-4">{service.description}</p>
-                          <button className="bg-white text-black font-semibold py-1.5 px-3 sm:py-2 sm:px-4 text-sm sm:text-base rounded-full">
-                            Read More
+                          <button className="relative bg-black text-white font-semibold py-1.5 px-3 sm:py-2 sm:px-4 text-sm sm:text-base rounded-full overflow-hidden group">
+                            <span className="absolute inset-0 bg-green-700 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
+                            <span className="relative z-10">Read More</span>
                           </button>
                         </div>
                       </div>

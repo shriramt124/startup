@@ -120,8 +120,9 @@ export default function BlogSection() {
         </motion.div>
 
         <div className="flex justify-center">
-          <a href="/blog" className="bg-white text-black px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3">
-            See All Blog
+          <a href="/blog" className="relative bg-black text-white px-6 py-3 rounded-full font-semibold inline-flex items-center gap-3 overflow-hidden group">
+            <span className="absolute inset-0 bg-green-700 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
+            <span className="relative z-10">See All Blog</span>
           </a>
         </div>
       </div>

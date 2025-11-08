@@ -214,7 +214,7 @@ export default function WhyChooseUs() {
                         {/* Communication Badge */}
                         <div className="absolute bottom-2 right-2 bg-green-500/90 backdrop-blur-sm rounded-full px-3 py-2 shadow-md flex items-center gap-2">
                             <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
+                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                                 <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
                             </svg>
                             <span className="text-xs font-semibold text-white">Daily Updates</span>
@@ -488,7 +488,7 @@ export default function WhyChooseUs() {
                         <div className="w-8 h-0.5 bg-blue-500"></div>
                         <h2 className="text-blue-600 text-lg font-semibold">WHY CHOOSE US</h2>
                     </div>
-                    
+
                     <div className="max-w-2xl">
                         <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 leading-tight">
                             We don't just write code—we solve your business problems.
@@ -525,7 +525,7 @@ export default function WhyChooseUs() {
                                         <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
                                     )}
                                 </div>
-                                
+
                                 {/* Expanded Description */}
                                 <div className={`overflow-hidden transition-all duration-500 ${
                                     activeTab === index ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
@@ -570,7 +570,7 @@ export default function WhyChooseUs() {
                                 backgroundSize: '20px 20px'
                             }}></div>
                         </div>
-                        
+
                         {/* Animated Content */}
                         <div className="relative z-10 h-full animate-fadeIn" key={activeTab}>
                             {renderVisual()}

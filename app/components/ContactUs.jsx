@@ -134,9 +134,9 @@ export default function ContactUs() {
                 <motion.button
                   whileTap={{ scale: 0.98 }}
                   type="submit"
-                  className="relative w-full bg-black text-white font-semibold py-3 rounded-xl overflow-hidden group transition-all shadow-xl"
+                  className="relative w-full bg-black text-white font-semibold py-3 rounded-full overflow-hidden group transition-all shadow-xl"
                 >
-                  <span className="absolute inset-0 bg-gradient-to-r from-orange-500 to-pink-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
+                  <span className="absolute inset-0 bg-green-700 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
                   <span className="relative z-10">{submitted ? 'Sent — Thanks!' : 'Send Message'}</span>
                 </motion.button>
               </div>
