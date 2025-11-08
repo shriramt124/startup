@@ -118,10 +118,10 @@ export default function OurServices() {
                 </p>
                 <a
                   href="#"
-                  className="relative inline-block text-black text-sm sm:text-md font-semibold border-b-2 border-black pb-1 overflow-hidden group"
+                  className="relative inline-flex items-center justify-center bg-black text-white font-semibold py-2 px-4 text-sm rounded-full overflow-hidden group"
                 >
-                  <span className="absolute inset-0 bg-black transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out -bottom-1"></span>
-                  <span className="relative z-10 group-hover:text-white transition-colors duration-500">
+                  <span className="absolute inset-0 bg-green-700 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
+                  <span className="relative z-10 transition-colors duration-500">
                     LEARN MORE <span className="ml-2">↗</span>
                   </span>
                 </a>
