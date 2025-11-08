@@ -7,9 +7,11 @@ async function getPost(slug) {
   try {
     console.log("sluggg from the ",slug);
     // Fetch from the admin/backend app running on port 3000
-    const res = await fetch(apiUrl(`/api/v1/posts/${slug}`), {
+    const url = apiUrl(`/api/v1/posts/${slug}`);
+    const res = await fetch(url, {
       next: { revalidate: 60 }
     });
+    console.log('[BLOG DETAIL] Fetch:', url, 'status:', res.status);
     // console.debug('Post fetch status:', res.status);
     if (!res.ok) {
       if (res.status === 404) return null;
@@ -67,22 +69,7 @@ export default async function BlogPostPage({ params }) {
       <article className="max-w-3xl mx-auto p-6 lg:p-12">
         {post.contentHtml ? (
           <div
-            className={cx(
-              'prose prose-lg',
-              'prose-headings:font-bold prose-headings:text-black',
-              'prose-h1:text-5xl prose-h2:text-4xl prose-h3:text-3xl',
-              'prose-h1:mb-6 prose-h2:mt-10 prose-h2:mb-4 prose-h3:mt-8 prose-h3:mb-3',
-              'prose-p:text-gray-800',
-              'prose-ol:list-decimal prose-ul:list-disc',
-              'prose-ol:pl-6 prose-ul:pl-6',
-              'prose-li:leading-relaxed',
-              'prose-a:text-green-700 hover:prose-a:underline',
-              'prose-blockquote:font-medium prose-blockquote:text-gray-700',
-              'prose-code:bg-gray-100 prose-code:text-pink-600',
-              'prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:rounded-xl prose-pre:p-5',
-              'prose-img:rounded-xl',
-              'prose-hr:my-12'
-            )}
+            className="article-content"
             dangerouslySetInnerHTML={{ __html: post.contentHtml }}
           />
         ) : (
@@ -97,7 +84,8 @@ export default async function BlogPostPage({ params }) {
 export async function generateStaticParams() {
   try {
     // Use backend on port 3000 for static params too
-  const res = await fetch(apiUrl('/api/v1/posts?limit=100&published=true'));
+  const url = apiUrl('/api/v1/posts?limit=100&published=true');
+  const res = await fetch(url);
     if (!res.ok) return [];
     const data = await res.json();
     const posts = data.data?.items || [];

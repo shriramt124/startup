@@ -325,3 +325,158 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* --- Rich article content styles (independent of typography plugin) --- */
+.article-content {
+  color: #111827; /* gray-900 */
+}
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4,
+.article-content h5,
+.article-content h6 {
+  color: #000;
+  line-height: 1.2;
+  font-weight: 800;
+  margin-top: 2.25rem; /* ~mt-9 */
+  margin-bottom: 1rem;
+}
+.article-content h1 { font-size: 2.75rem; /* ~text-5xl */ }
+.article-content h2 { font-size: 2rem;   /* ~text-4xl */ }
+.article-content h3 { font-size: 1.5rem; /* ~text-2xl/3xl */ }
+.article-content p { margin: 1rem 0; line-height: 1.8; }
+.article-content strong { font-weight: 700; }
+.article-content em { font-style: italic; }
+.article-content a { color: #166534; text-decoration: none; }
+.article-content a:hover { text-decoration: underline; }
+.article-content ul,
+.article-content ol { padding-left: 1.5rem; margin: 0.75rem 0 0.75rem 0; }
+.article-content ul { list-style: disc; }
+.article-content ol { list-style: decimal; }
+.article-content li { margin: 0.25rem 0; line-height: 1.7; }
+.article-content blockquote {
+  border-left: 4px solid #d1d5db; /* gray-300 */
+  padding-left: 1rem;
+  color: #374151; /* gray-700 */
+  font-style: italic;
+  margin: 1.25rem 0;
+}
+.article-content hr { margin: 2.5rem 0; border: 0; border-top: 1px solid #e5e7eb; }
+.article-content img { border-radius: 0.75rem; max-width: 100%; height: auto; }
+.article-content code {
+  background: #f3f4f6; /* gray-100 */
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.35rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.95em;
+}
+.article-content pre {
+  background: #111827; /* gray-900 */
+  color: #f9fafb; /* gray-50 */
+  padding: 1rem;
+  border-radius: 0.75rem;
+  overflow: auto;
+}
+.article-content pre code { background: transparent; padding: 0; }
+
+/* --- Enhanced article styling additions --- */
+/* Responsive fluid type scale */
+.article-content h1 { font-size: clamp(2.5rem, 6vw, 3.5rem); }
+.article-content h2 { font-size: clamp(2rem, 4.5vw, 2.75rem); }
+.article-content h3 { font-size: clamp(1.5rem, 3.5vw, 2rem); }
+.article-content h4 { font-size: clamp(1.25rem, 2.8vw, 1.5rem); font-weight:700; }
+.article-content h5 { font-size: 1.1rem; font-weight:600; }
+.article-content h6 { font-size: 0.95rem; font-weight:600; text-transform:uppercase; letter-spacing:.05em; }
+
+/* Constrain overly wide elements */
+.article-content > * { max-width: 70ch; }
+.article-content > pre,
+.article-content > table,
+.article-content > figure { max-width: 100%; }
+
+/* Fine‑tune vertical rhythm */
+.article-content h1 + h2 { margin-top: 0.75rem; }
+.article-content h2 + h3 { margin-top: 0.5rem; }
+.article-content h1:first-child { margin-top: 0; }
+
+/* Nested lists indentation */
+.article-content ul ul,
+.article-content ul ol,
+.article-content ol ul,
+.article-content ol ol { margin-top: 0.35rem; margin-bottom:0.35rem; }
+.article-content ul ul { list-style: circle; }
+.article-content ul ul ul { list-style: square; }
+
+/* Tables */
+.article-content { overflow-wrap:anywhere; }
+.article-content table { width:100%; border-collapse:collapse; margin:2rem 0; font-size:0.95rem; display:block; overflow-x:auto; }
+.article-content thead th { background:#f9fafb; font-weight:600; }
+.article-content th, .article-content td { border:1px solid #e5e7eb; padding:0.75rem 0.9rem; text-align:left; vertical-align:top; }
+.article-content tbody tr:nth-child(even) { background:#fcfcfd; }
+.article-content caption { caption-side:bottom; font-size:0.85rem; color:#6b7280; padding-top:0.5rem; }
+/* Remove excessive spacing from paragraphs inside cells */
+.article-content th p:first-child,
+.article-content td p:first-child { margin-top:0; }
+.article-content th p:last-child,
+.article-content td p:last-child { margin-bottom:0; }
+
+/* Code blocks enhancements */
+.article-content pre { position:relative; font-size:0.9rem; line-height:1.5; }
+.article-content pre::-webkit-scrollbar { height:8px; }
+.article-content pre::-webkit-scrollbar-track { background:#1f2937; }
+.article-content pre::-webkit-scrollbar-thumb { background:#374151; border-radius:4px; }
+.article-content pre code { font-size:inherit; }
+
+/* Inline code contrast in dark backgrounds inside headings */
+.article-content h1 code,
+.article-content h2 code,
+.article-content h3 code { background:#fde68a; color:#7c2d12; font-weight:600; }
+
+/* Figures & captions */
+.article-content figure { margin:2rem 0; text-align:center; }
+.article-content figure img { box-shadow:0 4px 24px -4px rgba(0,0,0,0.15); }
+.article-content figure figcaption { margin-top:0.75rem; font-size:0.85rem; color:#6b7280; }
+
+/* Callouts / Admonitions */
+.article-content .callout { border:1px solid #d1d5db; background:#f8fafc; padding:1rem 1.25rem; border-radius:0.75rem; margin:1.5rem 0; position:relative; }
+.article-content .callout:before { content:""; position:absolute; inset:0; border-radius:inherit; box-shadow:0 0 0 2px #ffffff inset; pointer-events:none; }
+.article-content .callout.info { border-color:#38bdf8; background:#f0f9ff; }
+.article-content .callout.warn { border-color:#f59e0b; background:#fffbeb; }
+.article-content .callout.danger { border-color:#ef4444; background:#fef2f2; }
+.article-content .callout h5 { margin-top:0; }
+
+/* Blockquote refinement */
+.article-content blockquote { background:linear-gradient(90deg,#f3f4f6,#ffffff); border-radius:0.5rem; }
+.article-content blockquote p { margin:0.5rem 0; }
+
+/* Horizontal rule accent */
+.article-content hr { border-top:1px solid #e5e7eb; position:relative; }
+.article-content hr:after { content:""; position:absolute; left:0; top:-1px; width:120px; height:1px; background:linear-gradient(90deg,#10b981,#a855f7,#ec4899); opacity:0.5; }
+
+/* Selection */
+.article-content ::selection { background:#ffe8a3; color:#111827; }
+
+/* Dark mode adjustments */
+.dark .article-content { color:#f3f4f6; }
+.dark .article-content h1,
+.dark .article-content h2,
+.dark .article-content h3,
+.dark .article-content h4,
+.dark .article-content h5,
+.dark .article-content h6 { color:#f9fafb; }
+.dark .article-content a { color:#6ee7b7; }
+.dark .article-content blockquote { background:linear-gradient(90deg,#1f2937,#111827); border-left-color:#374151; }
+.dark .article-content code { background:#1f2937; color:#f9fafb; }
+.dark .article-content pre { background:#0f172a; }
+.dark .article-content table th { background:#1f2937; }
+.dark .article-content th, .dark .article-content td { border-color:#374151; }
+.dark .article-content tbody tr:nth-child(even) { background:#152033; }
+.dark .article-content .callout { background:#1e293b; border-color:#334155; }
+.dark .article-content .callout.info { background:#082f49; border-color:#0ea5e9; }
+.dark .article-content .callout.warn { background:#422006; border-color:#f59e0b; }
+.dark .article-content .callout.danger { background:#450a0a; border-color:#ef4444; }
+.dark .article-content figure img { box-shadow:0 4px 24px -4px rgba(0,0,0,0.6); }
+
+/* Smooth anchor scrolling offset (if sticky navbar height ~80px) */
+html { scroll-padding-top: 90px; }
