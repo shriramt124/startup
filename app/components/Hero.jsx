@@ -372,7 +372,7 @@ export default function Hero() {
             <div className="lg:col-span-5">
               <p className="text-sm sm:text-base lg:text-lg text-gray-700 mb-5 sm:mb-6 max-w-xl">
                 From data strategy to managed AI solutions. At efic{" "}
-                <span className="w-[50px] h-[50px] bg-green-800"></span>sy we
+                <span className="w-[50px] h-[50px] bg-green-800 rounded-full"></span>sy we
                 align technology advancements with your business model turning
                 pressure from AI into performance and data investments into
                 impact.

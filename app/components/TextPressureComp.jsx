@@ -20,6 +20,7 @@ export default function TextPressureComp() {
                     textColor="#492efcff"
                     strokeColor="#03713eff"
                     minFontSize={36}
+                    fontFamily="'Brandon Grotesque', sans-serif"
                 />
             </div>
         </div>

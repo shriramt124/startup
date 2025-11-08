@@ -18,7 +18,7 @@ export default function WhoWeAre() {
 
                         {/* Eficsy Description */}
                         <p className="text-gray-700 text-sm mb-6 leading-relaxed italic border-l-4 border-blue-500 pl-4">
-                            At EFICSY, we believe technology should feel human-centered—intuitive, beautiful, and powerful. We're not a faceless agency or a code factory. We're a passionate team of creators, problem-solvers, and tech visionaries who thrive on turning complex challenges into elegant digital experiences.
+                            At <span style={{ fontFamily: "'Brandon Grotesque', sans-serif" }}>EFICSY</span>, we believe technology should feel human-centered—intuitive, beautiful, and powerful. We're not a faceless agency or a code factory. We're a passionate team of creators, problem-solvers, and tech visionaries who thrive on turning complex challenges into elegant digital experiences.</p>
                         </p>
 
                         {/* Description */}

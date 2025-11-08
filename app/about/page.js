@@ -619,7 +619,7 @@ export function WhyChooseUs() {
               </span>
             </div>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-8">
-              The Eficsy Advantage
+              The <span style={{ fontFamily: "'Brandon Grotesque', sans-serif" }}>Eficsy</span> Advantage
             </h2>
             <button className="relative inline-flex items-center gap-3 bg-orange-500 text-white font-semibold text-sm px-6 py-3 rounded-full overflow-hidden group transition-all hover:scale-105">
               <span className="absolute inset-0 bg-black transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
