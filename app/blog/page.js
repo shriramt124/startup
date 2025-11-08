@@ -7,11 +7,11 @@ import { apiUrl } from '../../lib/api';
 async function getPosts() {
   try {
     // Ensure this port matches the one your 'next-tiptap' project is running on
-    const res = await fetch(apiUrl('/api/v1/posts?published=true'), {
+    const url = apiUrl('/api/v1/posts?published=true');
+    const res = await fetch(url, {
       next: { revalidate: 60 } // Revalidate every 60 seconds
     });
-    console.log("response status:", res.status);
-    console.log("response ok:", res.ok);
+    console.log('[BLOG LIST] Fetch:', url, 'status:', res.status);
 
     if (!res.ok) {
       console.error('Failed to fetch posts:', res.status, await res.text());
@@ -19,13 +19,12 @@ async function getPosts() {
     }
 
     const data = await res.json();
-    console.log("Full API response:", JSON.stringify(data, null, 2));
-    console.log("data.data:", data.data);
-    console.log("data.data?.items:", data.data?.items);
+    if (!data || typeof data !== 'object') {
+      console.error('[BLOG LIST] Invalid JSON shape:', data);
+    }
     
     const posts = data.data?.items || [];
-    console.log("Posts array:", posts);
-    console.log("Posts length:", posts.length);
+  console.log('[BLOG LIST] Posts length:', posts.length);
     
     // Dynamically extract categories from posts
     const categories = ['All', ...new Set(posts.map(p => p.category?.name).filter(Boolean))];
@@ -89,20 +88,23 @@ export default async function BlogPage() {
                 className="group cursor-pointer"
               >
                 {/* Card */}
-                <div className="rounded-2xl overflow-hidden bg-gray-50 hover:bg-gray-100 transition-colors relative group">
-                  <div className="absolute inset-0 bg-black transform -translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
+                <div className="rounded-2xl overflow-hidden bg-white border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300 relative group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black transform -translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
                   {/* Image Container */}
-                  <div className="relative w-full h-56 overflow-hidden rounded-2xl z-10">
+                  <div className="relative  overflow-hidden z-10">
                     <Image
                       src={post.coverImageUrl || '/assets/demo/cs1.webp'}
                       alt={post.title}
+                      width={40}
+                      height={40}
                       fill
-                      className="object-cover group-hover:scale-[1.03] transition-transform duration-300"
+                      className="object-cover group-hover:scale-[1.05] transition-transform duration-500"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
 
                   {/* Content */}
-                  <div className="p-5 sm:p-6 relative z-10">
+                  <div className="p-5 sm:p-6 relative z-10 bg-white group-hover:bg-transparent transition-colors duration-300">
                     {/* Metadata */}
                     <div className="flex items-center gap-3 mb-4 text-xs sm:text-sm text-gray-500 group-hover:text-gray-300 transition-colors duration-300">
                       <span className="flex items-center gap-1">

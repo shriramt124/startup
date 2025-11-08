@@ -6,12 +6,24 @@ import { apiUrl } from '../../lib/api';
 
 async function fetchProjects() {
   // Try common CMS ports: prefer 3001, fall back to 3000
+  const url = apiUrl('/api/v1/projects?limit=100');
   try {
-    const res = await fetch(apiUrl('/api/v1/projects?limit=100'), { next: { revalidate: 120 } });
-    if (!res.ok) return [];
+    const res = await fetch(url, { next: { revalidate: 120 } });
+    console.log('[PROJECT LIST] Fetch:', url, 'status:', res.status);
+    if (!res.ok) {
+      console.error('[PROJECT LIST] Bad response', res.status, await res.text());
+      return [];
+    }
     const json = await res.json();
-    return json?.data?.items || [];
-  } catch {
+    if (!json || typeof json !== 'object') {
+      console.error('[PROJECT LIST] Invalid JSON shape:', json);
+      return [];
+    }
+    const items = json?.data?.items || [];
+    console.log('[PROJECT LIST] Items length:', items.length);
+    return items;
+  } catch (e) {
+    console.error('[PROJECT LIST] Network error', e);
     return [];
   }
 }
@@ -23,28 +35,28 @@ function ProjectCard({ project }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group rounded-[28px] bg-white border border-gray-100 shadow-sm p-6 md:p-8 transition-all hover:shadow-lg relative overflow-hidden"
+      className="group rounded-[28px] bg-white border-2 border-gray-200 shadow-lg hover:shadow-2xl hover:border-gray-300 p-6 md:p-8 transition-all duration-300 relative overflow-hidden"
     >
-      <div className="absolute inset-0 bg-black transform -translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black transform -translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
       <div className="relative z-10">
         <div className="w-fit mb-5">
-          <span className="inline-flex items-center rounded-full border border-violet-300 bg-violet-50/60 text-violet-700 text-xs md:text-sm px-3 py-1.5 group-hover:bg-white group-hover:text-black transition-colors duration-300">
+          <span className="inline-flex items-center rounded-full border-2 border-violet-300 bg-violet-50 text-violet-700 text-xs md:text-sm font-medium px-3 py-1.5 shadow-sm group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-300">
             {project.tags?.[0] || 'Project'}
           </span>
         </div>
-        <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-gray-900 mb-2 group-hover:text-white transition-colors duration-300">
+        <h3 className="text-xl md:text-2xl font-bold tracking-tight text-gray-900 mb-2 group-hover:text-white transition-colors duration-300">
           {project.name}
         </h3>
-        <p className="text-gray-600 text-sm md:text-base leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+        <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-4 group-hover:text-gray-200 transition-colors duration-300">
           {project.description || 'No description provided.'}
         </p>
-        <div className="mt-6 overflow-hidden rounded-2xl border border-gray-100">
+        <div className="mt-6 overflow-hidden rounded-2xl border-2 border-gray-200 shadow-md group-hover:border-gray-100 transition-all duration-300">
           <Image
             src={project.thumbnailUrl || '/assets/demo/cs1.webp'}
             alt={project.name}
             width={1200}
             height={700}
-            className="w-full h-56 md:h-64 object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            className="w-full h-56 md:h-64 object-cover transition-transform duration-500 group-hover:scale-[1.05]"
             priority={false}
           />
         </div>

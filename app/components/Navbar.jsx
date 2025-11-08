@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -24,7 +25,15 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-14 sm:h-16 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
           {/* Logo - Left Side */}
           <Link href="/" className="flex items-center group">
-            <span className="text-blue-800 text-xl sm:text-2xl font-bold">I H V P H</span>
+            <div className="relative w-28 h-8 sm:w-32 sm:h-10">
+              <Image
+                src="/eficlogo.png"
+                alt="Efic"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
           </Link>
 
           {/* Desktop Navigation Links - Center */}
