@@ -98,26 +98,26 @@ export default function DataStrategySection() {
           {/* Left: Large Headline */}
           <div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight">
-             
+
              <span style={{ fontFamily: "'Brandon Grotesque', sans-serif" }}>Efficsy</span> is an industry leading studio specializing in UX design, digital experiences, and Webflow Development.
             </h2>
           </div>
 
           {/* Right: Description Box */}
-          
+
         </div>
          <div className="mt-4 sm:mt-0 lg:pt-12 xl:pt-16 flex flex-col items-end justify-center text-right max-w-7xl">
             <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4 justify-end">
               <span className="bg-black text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold">
                 how we work
               </span>
-             
+
             </div>
             <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-md ml-auto">
-              We craft advanced motion design, scalable systems, and digital products for leading global brands.
+              We build robust data pipelines, intelligent AI systems, scalable analytics platforms, and stunning digital products for forward-thinking organizations.
             </p>
           </div>
-          
+
       </div>
 
       {/* Stacked Cards */}
