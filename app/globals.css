@@ -1,8 +1,8 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-
-/* Brandon Grotesque Font */
 @import url('https://fonts.cdnfonts.com/css/brandon-grotesque-regular');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
   font-family: 'Brandon Grotesque', sans-serif;
@@ -480,3 +480,10 @@
 
 /* Smooth anchor scrolling offset (if sticky navbar height ~80px) */
 html { scroll-padding-top: 90px; }
+
+/* Increased padding for small screens to prevent overlap */
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+  .services-section {
+    padding-top: 80px; /* Increased padding */
+  }
+}

@@ -62,7 +62,7 @@ export default function OurServices() {
   }, [services.length]);
 
   return (
-    <section ref={sectionRef} className="pt-16 sm:pt-20 md:pt-24 lg:pt-32 pb-32 sm:pb-20 bg-white" style={{ minHeight: "250vh" }}>
+    <section ref={sectionRef} className="pt-24 sm:pt-32 md:pt-40 lg:pt-48 pb-32 sm:pb-20 bg-white" style={{ minHeight: "250vh" }}>
       <div className="sticky top-0 max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 h-screen flex items-center">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 lg:gap-x-16 w-full items-start">
           {/* Left Column: Title and Services List */}
@@ -77,7 +77,7 @@ export default function OurServices() {
               {services.map((service, index) => (
                 <div
                   key={service.title}
-                  className={`relative overflow-hidden py-2 sm:py-3 px-2 sm:px-4 rounded-lg transition-all duration-300 ease-in-out ${
+                  className={`relative overflow-hidden py-2 sm:py-3 px-2 sm:px-4 rounded-xl transition-all duration-300 ease-in-out ${
                     index < activeIndex
                       ? "bg-white text-black"
                       : "bg-black text-white"
@@ -133,8 +133,8 @@ export default function OurServices() {
                         <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 bg-gradient-to-t from-black/90 to-transparent translate-y-0 transition-transform duration-300 ease-in-out z-20 group-hover:-translate-y-3">
                           <h3 className="text-white text-base sm:text-lg md:text-xl font-semibold mb-1 sm:mb-2">{service.title}</h3>
                           <p className="text-white text-sm sm:text-base mb-2 sm:mb-4">{service.description}</p>
-                          <button className="relative inline-flex items-center justify-center bg-black text-white font-semibold py-1.5 px-3 sm:py-2 sm:px-4 text-sm sm:text-base rounded-full overflow-hidden group">
-                            <span className="absolute inset-0 bg-green-700 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
+                          <button className="relative inline-flex items-center justify-center bg-black text-white font-semibold py-1.5 px-4 sm:py-2 sm:px-6 text-sm sm:text-base rounded-full overflow-hidden group transition-all hover:scale-105">
+                            <span className="absolute inset-0 bg-orange-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
                             <span className="relative z-10">Read More</span>
                           </button>
                         </div>
