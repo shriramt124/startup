@@ -56,11 +56,9 @@ export default async function BlogPage() {
           <div className="mb-12">
             <p className="text-xs sm:text-sm font-medium text-gray-600 uppercase tracking-wider mb-3">• Articles</p>
             <h2 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-2">
-              <span className="text-green-700">Read new</span>
+              <span className="text-green-700">Read  news & more</span>
             </h2>
-            <h3 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-black">
-              news & more
-            </h3>
+           
           </div>
 
           {/* Category Filters */}

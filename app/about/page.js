@@ -132,7 +132,7 @@ function AboutHero() {
               {splitText("Unlock your brand's potential with our creative solutions.")}
             </h1>
 
-            <div ref={ctaRef} className="mb-8 sm:mb-10 md:mb-12">
+            <div ref={ctaRef} className="mb-8 sm:mb-10 md:mb-12 mt-[8rem]">
               <a href="#contact" className="relative inline-flex items-center gap-2 sm:gap-3 bg-black text-white font-semibold text-xs sm:text-sm md:text-base px-6 sm:px-8 py-3 sm:py-4 rounded-full overflow-hidden group transition-all hover:scale-105">
                 <span className="absolute inset-0 bg-orange-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
                 <span className="relative z-10">BOOK A CALL</span>
@@ -142,10 +142,10 @@ function AboutHero() {
           </div>
 
           {/* Right: Image + Description */}
-          <div className="lg:col-span-4 flex flex-col gap-4 sm:gap-6 mt-0 lg:mt-[200px]">
-            <div ref={videoRef} className="w-full sm:w-5/6 mx-auto rounded-xl overflow-hidden shadow-lg">
+          <div className="lg:col-span-4 flex flex-col gap-4 sm:gap-6 mt-0 lg:mt-[150px]">
+            <div ref={videoRef} className="w-full sm:w-5/6 mx-auto rounded-xl overflow-hidden">
               <img
-                className="object-cover w-full h-[200px] sm:h-[250px] md:h-[300px]"
+                className="object-cover w-full h-[200px] sm:h-[250px]"
                 src="slideimage1.jpg"
                 alt="About our team"
               />
