@@ -360,14 +360,14 @@ function ServiceStackCard({ index, count, progress, id, label, title, descriptio
                 <span className="text-[10px] sm:text-[10px] uppercase tracking-[0.15em] sm:tracking-[0.2em] font-semibold">{label}</span>
               </div>
               <h3 className="text-xl sm:text-2xl md:text-3xl   font-extrabold leading-tight mb-2 sm:mb-3">{title}</h3>
-              <p className="text-sm sm:text-base lg:text-lg text-gray-700 mb-3">{description}</p>
+              <p className="text-sm sm:text-base  text-gray-700 mb-3">{description}</p>
 
               {!!(bullets && bullets.length) && (
                 <ul className="space-y-2 sm:space-y-2 mb-5 sm:mb-6">
                   {bullets.slice(0, 6).map((b, idx) => (
                     <li key={idx} className="flex items-start gap-2 sm:gap-3">
                       <span className="mt-1.5 sm:mt-2 h-1 w-1 sm:h-1.5 sm:w-1.5 rounded-full bg-black shrink-0" />
-                      <span className="text-black/90 text-xs sm:text-sm md:text-base">{b}</span>
+                      <span className="text-black/90 text-xs sm:text-sm">{b}</span>
                     </li>
                   ))}
                 </ul>
