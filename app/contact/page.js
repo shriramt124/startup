@@ -62,12 +62,12 @@ export default function ContactPage() {
             </div>
 
             {/* Heading */}
-            <h1 className="font-extrabold text-5xl md:text-6xl lg:text-7xl leading-tight text-black mb-4">
+            <h1 className="font-extrabold text-3xl md:text-4xl lg:text-5xl leading-tight text-black mb-3">
               Ready to elevate your brand?
             </h1>
 
             {/* Description */}
-            <p className="text-gray-600 text-base md:text-lg mb-8 max-w-lg leading-relaxed">
+            <p className="text-gray-600 text-sm md:text-base mb-6 max-w-lg leading-relaxed">
               Have a project in mind or just want to say hello? Reach out - we're here to help you grow, create, and thrive.
             </p>
 
@@ -122,7 +122,7 @@ export default function ContactPage() {
 
           {/* Right Column - Image */}
           <div className="flex items-center justify-center lg:justify-end">
-            <div className="w-full max-w-2xl h-[440px] lg:h-[600px] rounded-2xl overflow-hidden border-4 border-black shadow-2xl bg-gray-100">
+            <div className="w-full max-w-2xl h-[440px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
               <Image
                 src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80"
                 alt="Professional workspace"
