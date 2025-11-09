@@ -28,12 +28,12 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-24">
         {/* Top: Brand + Subscribe */}
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8">
-          <div className="w-[200px] sm:w-[280px] md:w-[350px] lg:w-[400px]">
+          <div className="w-[160px] sm:w-[220px] md:w-[280px] lg:w-[320px]">
             <Image
               src="/eficwhite1.png"
               alt="EFICSY Logo"
-              width={400}
-              height={120}
+              width={320}
+              height={96}
               className="w-full h-auto"
               priority
             />
