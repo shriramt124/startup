@@ -128,7 +128,7 @@ export default function OurServices() {
                   From data infrastructure to AI automation, we deliver end-to-end solutions that drive business impact.
                 </p>
                 <a
-                  href="/contact"
+                  href="/services"
                   className="relative inline-flex items-center justify-center bg-black text-white font-semibold py-2 px-4 text-xs rounded-full overflow-hidden group"
                 >
                   <span className="absolute inset-0 bg-green-700 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
