@@ -7,32 +7,32 @@ import { gsap } from 'gsap';
 export default function FaqSection() {
   const faqs = [
     {
-      q: "What is Webflow and why is it the best website builder?",
-      a: "Webflow is a visual development platform that lets you design, build, and launch responsive websites without writing server-side code. It combines a visual designer with clean HTML/CSS and CMS/ecommerce, letting teams ship production-grade sites faster.",
+      q: "What technologies do you use for web and mobile app development?",
+      a: "We build modern applications using cutting-edge technologies like Next.js, React, Node.js for web development, and React Native or native Android development for mobile apps. Our stack is chosen to ensure scalability, performance, and maintainability.",
     },
     {
-      q: "How can I measure the success of my marketing campaigns?",
-      a: "Track a north-star metric plus supporting KPIs (conversions, CAC, LTV, CTR). Use tagged URLs, analytics events, and cohort views to attribute impact and iterate week over week.",
+      q: "How can data analytics help my business make better decisions?",
+      a: "Our data analytics services transform raw data into actionable insights through advanced visualization, predictive modeling, and real-time dashboards. We help you identify trends, optimize operations, and make data-driven decisions that drive growth and efficiency.",
     },
     {
-      q: "What is included in your branding services?",
-      a: "Brand strategy, naming, messaging, visual identity (logo, color, type), UI kit, and usage guidelines—delivered as reusable assets for product and marketing.",
+      q: "What AI and automation solutions do you provide?",
+      a: "We implement AI-powered solutions including machine learning models, predictive analytics, process automation, chatbots, and intelligent data processing. Our AI services help you automate repetitive tasks, enhance decision-making, and unlock new business opportunities.",
     },
     {
-      q: "Do you offer customized marketing solutions?",
-      a: "Yes. We create channel-specific playbooks tailored to your audience and growth stage, including content, paid, lifecycle, and SEO.",
+      q: "Do you offer both web and mobile app development?",
+      a: "Yes! We provide comprehensive development services for both web applications (responsive websites, progressive web apps, e-commerce platforms) and mobile applications (native Android apps and cross-platform solutions). We handle everything from design to deployment.",
     },
     {
-      q: "How quickly can deliver designs for our business?",
-      a: "Most engagements ship meaningful work in 2–4 weeks, with weekly milestones and demos.",
+      q: "How long does it take to develop a custom application?",
+      a: "Project timelines vary based on complexity and requirements. A typical web application takes 4-8 weeks, while mobile apps range from 6-12 weeks. We work in agile sprints with weekly milestones, ensuring you see progress and can provide feedback throughout development.",
     },
     {
-      q: "Offer customized marketing solutions?",
-      a: "Every plan is modular. Start small and expand to additional channels or funnels as ROI is proven.",
+      q: "Can you help us migrate our existing data infrastructure?",
+      a: "Absolutely. We specialize in data engineering and migration services, including cloud migration, database modernization, ETL pipeline development, and data warehouse implementation. We ensure zero data loss and minimal downtime during transitions.",
     },
     {
-      q: "Why is it the best website builder?",
-      a: "Because it blends design freedom with production reliability and performance, while keeping teams in one tool.",
+      q: "What kind of support do you provide after project delivery?",
+      a: "We offer comprehensive post-launch support including maintenance, updates, performance monitoring, bug fixes, and feature enhancements. We also provide training for your team and detailed documentation to ensure smooth operations.",
     },
   ];
 
