@@ -56,7 +56,7 @@ export default function Footer() {
             </p>
             <div className="mt-5 sm:mt-6">
               <a
-                href="#contact"
+                href="/contact"
                 className="inline-flex items-center gap-2 sm:gap-3 bg-white text-black px-4 sm:px-5 py-2 sm:py-3 text-sm sm:text-base rounded-full font-semibold hover:bg-gray-100 transition"
               >
                 Let's talk
