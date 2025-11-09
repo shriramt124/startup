@@ -47,8 +47,8 @@ const slides = [
     secondaryButton: "Contact Us",
     quote: {
       text: "Our architecture is built for scale, ensuring your platform grows seamlessly with your business.",
-      author: "Jane Doe",
-      role: "Lead Architect",
+      author: "Rohit Makhija",
+      role: "Lead Data Engineer",
     },
     principles: [
       { icon: "user", title: "Machine Learning" },
