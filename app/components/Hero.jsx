@@ -7,10 +7,11 @@ const slides = [
   {
     id: 1,
     background: "/slideimage1.jpg",
-    title: "Custom Web Solutions",
+    title: "Transform Your Business with Custom Web Solutions",
     description:
-      "We craft bespoke websites and platforms tailored to your unique business needs and goals.",
-    buttonText: "Explore Our Services",
+      "We craft bespoke websites and platforms tailored to your unique business needs and goals. From concept to deployment, we deliver excellence.",
+    buttonText: "Get Started",
+    secondaryButton: "View Our Work",
     metrics: [
       { value: "45%+", label: "Average Conversion Lift" },
       { value: "2X", label: "Faster Page Loads" },
@@ -25,10 +26,11 @@ const slides = [
   {
     id: 2,
     background: "/slideimage2.jpg",
-    title: "Innovative Mobile Apps",
+    title: "Build Powerful Mobile Experiences",
     description:
-      "Engaging and high-performance mobile applications for iOS and Android that captivate your users.",
-    buttonText: "Discover Mobile Solutions",
+      "Engaging and high-performance mobile applications for iOS and Android. We create apps that your users will love and your business will rely on.",
+    buttonText: "Start Your Project",
+    secondaryButton: "Our Services",
     principles: [
       { icon: "user", title: "Intuitive UX/UI" },
       { icon: "agile", title: "Cross-Platform" },
@@ -38,10 +40,11 @@ const slides = [
   {
     id: 3,
     background: "/slideimg3.jpg",
-    title: "AI-Powered Insights",
+    title: "Unlock Growth with AI-Powered Solutions",
     description:
-      "Leverage artificial intelligence to unlock data-driven insights and automate your business processes.",
-    buttonText: "Explore AI Services",
+      "Leverage artificial intelligence to unlock data-driven insights and automate your business processes. Stay ahead with cutting-edge technology.",
+    buttonText: "Explore AI Solutions",
+    secondaryButton: "Contact Us",
     quote: {
       text: "Our architecture is built for scale, ensuring your platform grows seamlessly with your business.",
       author: "Jane Doe",
@@ -175,18 +178,18 @@ export default function Hero() {
                 {slides[currentSlide].description}
               </p>
               <div className="flex flex-col sm:flex-row items-start gap-2 xs:gap-3 sm:gap-4">
-                <button className="relative inline-flex items-center px-3 xs:px-4 sm:px-6 py-1.5 xs:py-2 sm:py-3 text-xs xs:text-sm rounded-full bg-black text-white font-semibold overflow-hidden group transition-all hover:scale-[1.02]">
+                <a href="/contact" className="relative inline-flex items-center px-3 xs:px-4 sm:px-6 py-1.5 xs:py-2 sm:py-3 text-xs xs:text-sm rounded-full bg-black text-white font-semibold overflow-hidden group transition-all hover:scale-[1.02]">
                   <span className="absolute inset-0 bg-green-700 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
                   <span className="relative z-10 transition-colors duration-500">
                     {slides[currentSlide].buttonText}
                   </span>
-                </button>
-                <button className="relative inline-flex items-center px-2 xs:px-3 sm:px-4 py-1.5 xs:py-2 text-xs xs:text-sm rounded-full border border-white text-white/90 overflow-hidden group transition">
+                </a>
+                <a href="/services" className="relative inline-flex items-center px-2 xs:px-3 sm:px-4 py-1.5 xs:py-2 text-xs xs:text-sm rounded-full border border-white text-white/90 overflow-hidden group transition">
                   <span className="absolute inset-0 bg-white transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
                   <span className="relative z-10 group-hover:text-black transition-colors duration-500">
-                    Learn more
+                    {slides[currentSlide].secondaryButton || "Learn More"}
                   </span>
-                </button>
+                </a>
               </div>
             </div>
 
