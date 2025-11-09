@@ -55,11 +55,7 @@ export default function Navbar() {
           
           {/* CTA and Search - Right Side */}
           <div className="hidden lg:flex items-center space-x-3 xl:space-x-4">
-            <button className="text-gray-600 hover:text-blue-700">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 xl:h-6 xl:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </button>
+           
             <Link href="/contact" onClick={closeMobile} className="relative px-4 xl:px-6 py-1.5 xl:py-2 rounded-full font-medium text-xs xl:text-sm overflow-hidden group transition-all duration-300 shadow-lg bg-black text-white hover:scale-105">
               <span className="absolute inset-0 bg-green-700 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
               <span className="relative z-10">Contact us</span>
