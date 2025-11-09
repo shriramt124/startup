@@ -16,14 +16,16 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Eficsy - Data Analytics, AI & Web Development Solutions",
   description: "Eficsy delivers cutting-edge data analytics, AI automation, and web & mobile app development services to transform your business.",
+  icons: {
+    icon: '/eficlogo.png',
+    shortcut: '/eficlogo.png',
+    apple: '/eficlogo.png',
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="/eficlogo.png" type="image/png" />
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
