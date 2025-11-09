@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Eficsy - Data Analytics, AI & Web Development Solutions",
+  title: "Eficsy - Data Engineering, AI & Development Solutions",
   description: "Eficsy delivers cutting-edge data analytics, AI automation, and web & mobile app development services to transform your business.",
   icons: {
     icon: '/eficwhite1.png',
