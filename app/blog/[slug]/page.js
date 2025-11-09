@@ -3,6 +3,50 @@ import { notFound } from 'next/navigation';
 import { apiUrl } from '../../../lib/api';
 function cx(...classes) { return classes.filter(Boolean).join(' '); }
 
+export async function generateMetadata({ params }) {
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
+  const post = await getPost(slug);
+
+  if (!post) {
+    return {
+      title: 'Post Not Found',
+      description: 'The requested blog post could not be found.',
+    };
+  }
+
+  return {
+    title: post.title,
+    description: post.excerpt || post.description || `Read ${post.title} on Eficsy blog.`,
+    keywords: post.tags || ['blog', 'technology', 'eficsy'],
+    authors: [{ name: post.author || 'Eficsy Team' }],
+    openGraph: {
+      title: post.title,
+      description: post.excerpt || post.description,
+      url: `https://eficsy.com/blog/${slug}`,
+      type: 'article',
+      publishedTime: post.publishedAt || post.createdAt,
+      images: post.coverImageUrl ? [
+        {
+          url: post.coverImageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ] : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt || post.description,
+      images: post.coverImageUrl ? [post.coverImageUrl] : [],
+    },
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
+  };
+}
+
 async function getPost(slug) {
   try {
     console.log("sluggg from the ",slug);

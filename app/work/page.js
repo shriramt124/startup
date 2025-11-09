@@ -1,5 +1,20 @@
 import Image from "next/image";
 import DataStrategySection from "../components/DataStrategySection";
+
+export const metadata = {
+  title: 'Our Work - Portfolio of Data Engineering & Development Projects',
+  description: 'Explore our portfolio of successful data engineering, AI automation, web development, and mobile app projects. See how we help businesses transform through technology.',
+  keywords: ['portfolio', 'case studies', 'data engineering projects', 'AI solutions', 'web development portfolio', 'mobile app examples'],
+  openGraph: {
+    title: 'Eficsy Portfolio - Our Best Work',
+    description: 'Discover the innovative solutions we\'ve built for businesses worldwide.',
+    url: 'https://eficsy.com/work',
+    type: 'website',
+  },
+  alternates: {
+    canonical: '/work',
+  },
+};
 import { WhyChooseUs } from "../about/page";
 import { ContactCTA } from "../about/page";
 import { apiUrl } from '../../lib/api';

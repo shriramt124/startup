@@ -1,3 +1,18 @@
+export const metadata = {
+  title: 'Investors - Partner with Eficsy',
+  description: 'Learn about investment opportunities and partnership options with Eficsy. Join us in transforming businesses through data and technology.',
+  keywords: ['investors', 'partnerships', 'investment opportunities', 'business growth'],
+  openGraph: {
+    title: 'Investor Relations - Eficsy',
+    description: 'Investment and partnership opportunities with Eficsy.',
+    url: 'https://eficsy.com/investors',
+    type: 'website',
+  },
+  alternates: {
+    canonical: '/investors',
+  },
+};
+
 export default function InvestorsPage() {
   return (
     <main className="min-h-screen flex items-center justify-center bg-white text-black p-6">

@@ -1,5 +1,20 @@
 import Link from 'next/link';
 import { ContactCTA } from '../about/page';
+
+export const metadata = {
+  title: 'Blog - Insights on Data Engineering, AI & Technology',
+  description: 'Expert insights, tutorials, and industry news on data engineering, AI automation, analytics, and modern software development. Stay ahead with Eficsy.',
+  keywords: ['data engineering blog', 'AI insights', 'technology articles', 'software development tips', 'data analytics tutorials', 'tech news'],
+  openGraph: {
+    title: 'Eficsy Blog - Technology Insights & Best Practices',
+    description: 'Latest articles on data engineering, AI, and digital innovation.',
+    url: 'https://eficsy.com/blog',
+    type: 'website',
+  },
+  alternates: {
+    canonical: '/blog',
+  },
+};
 import BlogHero from '../components/BlogHero';
 import Image from 'next/image';
 import { apiUrl } from '../../lib/api';

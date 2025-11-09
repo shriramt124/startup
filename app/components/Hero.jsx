@@ -7,50 +7,50 @@ const slides = [
   {
     id: 1,
     background: "/slideimage1.jpg",
-    title: "Custom Web Solutions",
+    title: "Transform Data Into Your Competitive Advantage",
     description:
-      "We craft bespoke websites and platforms tailored to your unique business needs and goals.",
-    buttonText: "Explore Our Services",
+      "Enterprise-grade data engineering, AI automation, and analytics solutions that drive measurable business outcomes and accelerate growth.",
+    buttonText: "Start Your Project",
     metrics: [
-      { value: "45%+", label: "Average Conversion Lift" },
-      { value: "2X", label: "Faster Page Loads" },
-      { value: "99.9%", label: "Uptime Guarantee" },
+      { value: "98%", label: "Client Satisfaction Rate" },
+      { value: "3X", label: "Average ROI Improvement" },
+      { value: "24/7", label: "Expert Support" },
     ],
     principles: [
-      { icon: "user", title: "User-Centric Design" },
-      { icon: "agile", title: "Agile Development" },
-      { icon: "scalable", title: "Scalable Architecture" },
+      { icon: "user", title: "Data-Driven Strategy" },
+      { icon: "agile", title: "Agile Delivery" },
+      { icon: "scalable", title: "Scalable Solutions" },
     ],
   },
   {
     id: 2,
     background: "/slideimage2.jpg",
-    title: "Innovative Mobile Apps",
+    title: "Intelligent Automation That Scales",
     description:
-      "Engaging and high-performance mobile applications for iOS and Android that captivate your users.",
-    buttonText: "Discover Mobile Solutions",
+      "Streamline operations and boost productivity with AI-powered automation solutions designed for modern enterprises.",
+    buttonText: "Explore AI Solutions",
     principles: [
-      { icon: "user", title: "Intuitive UX/UI" },
-      { icon: "agile", title: "Cross-Platform" },
-      { icon: "scalable", title: "Performance Optimized" },
+      { icon: "user", title: "Process Optimization" },
+      { icon: "agile", title: "AI Integration" },
+      { icon: "scalable", title: "Enterprise Ready" },
     ],
   },
   {
     id: 3,
     background: "/slideimg3.jpg",
-    title: "AI-Powered Insights",
+    title: "Custom Digital Solutions That Deliver",
     description:
-      "Leverage artificial intelligence to unlock data-driven insights and automate your business processes.",
-    buttonText: "Explore AI Services",
+      "Beautiful, high-performance web and mobile applications built with cutting-edge technology and best practices for exceptional user experiences.",
+    buttonText: "View Our Work",
     quote: {
-      text: "Our architecture is built for scale, ensuring your platform grows seamlessly with your business.",
-      author: "Jane Doe",
-      role: "Lead Architect",
+      text: "We build scalable architectures that grow with your business, ensuring long-term success and sustainable performance.",
+      author: "Eficsy Engineering Team",
+      role: "Technology Leaders",
     },
     principles: [
-      { icon: "user", title: "Machine Learning" },
-      { icon: "agile", title: "Predictive Analytics" },
-      { icon: "scalable", title: "Data Visualization" },
+      { icon: "user", title: "User Experience First" },
+      { icon: "agile", title: "Modern Tech Stack" },
+      { icon: "scalable", title: "Cloud Native" },
     ],
   },
 ];
@@ -175,18 +175,18 @@ export default function Hero() {
                 {slides[currentSlide].description}
               </p>
               <div className="flex flex-col sm:flex-row items-start gap-2 xs:gap-3 sm:gap-4">
-                <button className="relative inline-flex items-center px-3 xs:px-4 sm:px-6 py-1.5 xs:py-2 sm:py-3 text-xs xs:text-sm rounded-full bg-black text-white font-semibold overflow-hidden group transition-all hover:scale-[1.02]">
+                <a href="/contact" className="relative inline-flex items-center px-3 xs:px-4 sm:px-6 py-1.5 xs:py-2 sm:py-3 text-xs xs:text-sm rounded-full bg-black text-white font-semibold overflow-hidden group transition-all hover:scale-[1.02]">
                   <span className="absolute inset-0 bg-green-700 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
                   <span className="relative z-10 transition-colors duration-500">
                     {slides[currentSlide].buttonText}
                   </span>
-                </button>
-                <button className="relative inline-flex items-center px-2 xs:px-3 sm:px-4 py-1.5 xs:py-2 text-xs xs:text-sm rounded-full border border-white text-white/90 overflow-hidden group transition">
+                </a>
+                <a href="/services" className="relative inline-flex items-center px-2 xs:px-3 sm:px-4 py-1.5 xs:py-2 text-xs xs:text-sm rounded-full border border-white text-white/90 overflow-hidden group transition">
                   <span className="absolute inset-0 bg-white transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"></span>
                   <span className="relative z-10 group-hover:text-black transition-colors duration-500">
-                    Learn more
+                    Our Services
                   </span>
-                </button>
+                </a>
               </div>
             </div>
 
@@ -332,8 +332,7 @@ export default function Hero() {
           <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-4 xs:gap-6 sm:gap-8">
             <div className="lg:col-span-8">
               <h2 className="text-black font-extrabold leading-tight text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
-                Unlocking growth with data, technology and artificial
-                intelligence.
+                Turning data complexity into business clarity with AI-powered solutions.
               </h2>
             </div>
 
@@ -371,11 +370,7 @@ export default function Hero() {
             {/* Right content */}
             <div className="lg:col-span-5">
               <p className="text-sm sm:text-base lg:text-lg text-gray-700 mb-5 sm:mb-6 max-w-xl">
-                From data strategy to managed AI solutions. At efic{" "}
-                <span className="w-[50px] h-[50px] bg-green-800 rounded-full"></span>sy we
-                align technology advancements with your business model turning
-                pressure from AI into performance and data investments into
-                impact.
+                At Eficsy, we transform complex data challenges into strategic advantages. Our expertise in data engineering, AI automation, and analytics helps businesses unlock insights, optimize operations, and accelerate growth through intelligent technology solutions.
               </p>
 
               <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
