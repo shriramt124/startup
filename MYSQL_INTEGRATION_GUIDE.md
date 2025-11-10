@@ -67,17 +67,16 @@ This creates all necessary tables:
 Create a `.env` file in your project root (or set in Hostinger's environment variables):
 
 ```env
-# MySQL Configuration
-MYSQL_HOST=your-hostinger-mysql-host
-MYSQL_USER=your-database-username
-MYSQL_PASSWORD=your-database-password
-MYSQL_DATABASE=eficsy
+# MySQL Configuration for Hostinger
+MYSQL_HOST=localhost
+MYSQL_USER=u123456789_eficsy
+MYSQL_PASSWORD=YourStrongPassword123!
+MYSQL_DATABASE=u123456789_eficsy
 
-# Example for Hostinger:
-# MYSQL_HOST=localhost
-# MYSQL_USER=u123456789_eficsy
-# MYSQL_PASSWORD=YourStrongPassword123!
-# MYSQL_DATABASE=u123456789_eficsy
+# Note: Replace with your actual Hostinger credentials
+# - MYSQL_HOST is usually 'localhost' on Hostinger
+# - Username and database follow pattern: u[accountID]_[dbname]
+# - Get these from Hostinger's MySQL Databases section
 ```
 
 **Important**: Never commit `.env` to version control! Add it to `.gitignore`.

@@ -1,4 +1,3 @@
-
 import getConnection from '@/lib/mysql';
 import { generateId } from '@/lib/mysql-helpers';
 import { json, parsePagination, serverError } from '../_utils';
@@ -8,7 +7,7 @@ export async function GET(req) {
     const db = await getConnection();
     const url = new URL(req.url);
     const { skip, limit, page, pageSize } = parsePagination(url);
-    
+
     const [rows] = await db.query(
       `SELECT p.*, GROUP_CONCAT(c.slug) as category_slugs, GROUP_CONCAT(c.name) as category_names
        FROM posts p
@@ -20,9 +19,9 @@ export async function GET(req) {
        LIMIT ? OFFSET ?`,
       [limit, skip]
     );
-    
+
     const [[{ total }]] = await db.query('SELECT COUNT(*) as total FROM posts WHERE published = TRUE');
-    
+
     const items = rows.map(row => ({
       id: row.id,
       slug: row.slug,
@@ -36,7 +35,7 @@ export async function GET(req) {
         name: row.category_names.split(',')[i]
       })) : []
     }));
-    
+
     return json({ items, page, pageSize, total });
   } catch (e) {
     return serverError(e);
@@ -48,7 +47,7 @@ export async function POST(req) {
     const db = await getConnection();
     const body = await req.json();
     const id = generateId();
-    
+
     await db.query(
       `INSERT INTO posts (id, slug, title, excerpt, content, cover_url, read_time_min, published, published_at)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -64,7 +63,7 @@ export async function POST(req) {
         body.publishedAt || null
       ]
     );
-    
+
     // Handle categories
     if (body.categories && body.categories.length > 0) {
       for (const catSlug of body.categories) {
@@ -77,7 +76,7 @@ export async function POST(req) {
         }
       }
     }
-    
+
     return json({ id, ...body }, { status: 201 });
   } catch (e) {
     return serverError(e);
