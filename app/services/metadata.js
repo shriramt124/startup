@@ -1,10 +1,34 @@
 
 export const metadata = {
-  title: "Our Services - Data Engineering, AI & Development | Eficsy",
-  description: "Explore Eficsy's comprehensive services including data engineering, AI automation, web development, mobile apps, and business intelligence solutions.",
-  keywords: ["data engineering services", "AI automation", "web development services", "mobile app development", "business intelligence"],
+  title: "Data Engineering, AI Automation & Software Development Services | Eficsy",
+  description: "Comprehensive data engineering services including ETL pipelines, data warehousing, AI automation, machine learning, custom software development, business intelligence, and cloud data solutions. Expert consulting for enterprise data transformation.",
+  keywords: [
+    "data engineering services",
+    "ETL pipeline development",
+    "data warehouse consulting",
+    "AI automation services",
+    "machine learning consulting",
+    "custom software development",
+    "business intelligence services",
+    "data analytics consulting",
+    "cloud data migration",
+    "big data solutions",
+    "real-time data processing",
+    "data pipeline automation",
+    "AI integration services",
+    "enterprise software development",
+    "data lake architecture",
+    "Snowflake consulting",
+    "AWS data services",
+    "Azure data engineering",
+    "Google Cloud data platform"
+  ],
   openGraph: {
-    title: "Our Services - Data Engineering, AI & Development | Eficsy",
-    description: "Explore Eficsy's comprehensive services including data engineering, AI automation, web development, mobile apps, and business intelligence solutions.",
+    title: "Data Engineering, AI Automation & Software Development Services | Eficsy",
+    description: "Comprehensive data engineering services including ETL pipelines, data warehousing, AI automation, machine learning, custom software development, and business intelligence solutions.",
+    type: "website",
+  },
+  alternates: {
+    canonical: 'https://eficsy.com/services',
   },
 };

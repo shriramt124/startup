@@ -1,9 +1,24 @@
 
 export const metadata = {
-  title: "Our Projects - Case Studies & Portfolio | Eficsy",
-  description: "Explore Eficsy's portfolio of successful data engineering, AI, and development projects. See how we've helped businesses transform with technology.",
+  title: "Case Studies & Portfolio - Data Engineering & AI Projects | Eficsy",
+  description: "Explore successful data engineering, AI automation, and machine learning projects. Real-world case studies showcasing ETL pipelines, data warehouses, predictive analytics, and enterprise software solutions.",
+  keywords: [
+    "data engineering case studies",
+    "AI automation projects",
+    "machine learning portfolio",
+    "ETL pipeline examples",
+    "data warehouse projects",
+    "business intelligence case studies",
+    "enterprise software projects",
+    "data analytics success stories",
+    "AI implementation examples"
+  ],
   openGraph: {
-    title: "Our Projects - Case Studies & Portfolio | Eficsy",
-    description: "Explore Eficsy's portfolio of successful data engineering, AI, and development projects. See how we've helped businesses transform with technology.",
+    title: "Case Studies & Portfolio - Data Engineering & AI Projects | Eficsy",
+    description: "Explore successful data engineering, AI automation, and machine learning projects with real-world case studies and proven results.",
+    type: "website",
+  },
+  alternates: {
+    canonical: 'https://eficsy.com/work',
   },
 };

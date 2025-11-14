@@ -38,11 +38,24 @@ export async function generateMetadata({ params }) {
     };
   }
 
+  const enhancedKeywords = [
+    ...(post.tags || []),
+    'data engineering',
+    'AI automation',
+    'machine learning',
+    'business intelligence',
+    'data analytics',
+    'software development'
+  ];
+
   return {
-    title: post.title,
-    description: post.excerpt || post.title,
-    keywords: post.tags || [],
+    title: `${post.title} | Eficsy Data Engineering & AI Blog`,
+    description: post.excerpt || `${post.title} - Expert insights on data engineering, AI automation, and machine learning from Eficsy.`,
+    keywords: enhancedKeywords,
     authors: [{ name: post.author?.name || 'Eficsy' }],
+    alternates: {
+      canonical: `https://eficsy.com/blog/${slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt || post.title,
@@ -50,6 +63,7 @@ export async function generateMetadata({ params }) {
       publishedTime: post.publishedAt || post.createdAt,
       modifiedTime: post.updatedAt,
       authors: [post.author?.name || 'Eficsy'],
+      tags: enhancedKeywords,
       images: [
         {
           url: post.coverImageUrl || '/eficwhite1.png',
@@ -64,6 +78,7 @@ export async function generateMetadata({ params }) {
       title: post.title,
       description: post.excerpt || post.title,
       images: [post.coverImageUrl || '/eficwhite1.png'],
+      creator: '@eficsy',
     },
   };
 }

@@ -1,3 +1,4 @@
+
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
@@ -17,11 +18,63 @@ const geistMono = Geist_Mono({
 export const metadata = {
   metadataBase: new URL('https://eficsy.com'),
   title: {
-    default: "Eficsy - Data Engineering, AI & Development Solutions",
+    default: "Eficsy - Enterprise Data Engineering, AI Automation & Custom Software Development",
     template: "%s | Eficsy"
   },
-  description: "Eficsy delivers cutting-edge data analytics, AI automation, and web & mobile app development services to transform your business.",
-  keywords: ["data engineering", "AI automation", "web development", "mobile app development", "data analytics", "business intelligence", "machine learning", "artificial intelligence"],
+  description: "Leading data engineering company specializing in AI automation, machine learning solutions, ETL pipelines, cloud data warehousing, business intelligence, and enterprise software development. Transform your business with cutting-edge data analytics and AI-powered automation.",
+  keywords: [
+    // Data Engineering Keywords
+    "data engineering services", 
+    "ETL pipeline development",
+    "data warehouse consulting",
+    "big data solutions",
+    "cloud data architecture",
+    "data pipeline automation",
+    "real-time data processing",
+    "data lake implementation",
+    "Apache Spark development",
+    "Snowflake consulting",
+    
+    // AI & ML Keywords
+    "AI automation services",
+    "machine learning solutions",
+    "artificial intelligence consulting",
+    "AI integration services",
+    "predictive analytics",
+    "natural language processing",
+    "computer vision solutions",
+    "AI chatbot development",
+    "ML model deployment",
+    "generative AI solutions",
+    
+    // Development Keywords
+    "custom software development",
+    "web application development",
+    "mobile app development",
+    "full stack development",
+    "enterprise software solutions",
+    "SaaS development",
+    "API development services",
+    "cloud native applications",
+    
+    // Analytics Keywords
+    "business intelligence consulting",
+    "data analytics services",
+    "data visualization",
+    "Power BI consulting",
+    "Tableau consulting",
+    "advanced analytics",
+    "predictive modeling",
+    "data science consulting",
+    
+    // Business Keywords
+    "digital transformation",
+    "data-driven solutions",
+    "enterprise automation",
+    "workflow automation",
+    "process optimization",
+    "data strategy consulting"
+  ],
   authors: [{ name: "Eficsy" }],
   creator: "Eficsy",
   publisher: "Eficsy",
@@ -30,26 +83,29 @@ export const metadata = {
     address: false,
     telephone: false,
   },
+  alternates: {
+    canonical: 'https://eficsy.com',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://eficsy.com',
     siteName: 'Eficsy',
-    title: "Eficsy - Data Engineering, AI & Development Solutions",
-    description: "Eficsy delivers cutting-edge data analytics, AI automation, and web & mobile app development services to transform your business.",
+    title: "Eficsy - Enterprise Data Engineering, AI Automation & Custom Software Development",
+    description: "Leading data engineering company specializing in AI automation, machine learning solutions, ETL pipelines, cloud data warehousing, business intelligence, and enterprise software development.",
     images: [
       {
         url: '/eficwhite1.png',
         width: 1200,
         height: 630,
-        alt: 'Eficsy - Data Engineering & AI Solutions',
+        alt: 'Eficsy - Data Engineering, AI Automation & Software Development Company',
       }
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Eficsy - Data Engineering, AI & Development Solutions",
-    description: "Eficsy delivers cutting-edge data analytics, AI automation, and web & mobile app development services to transform your business.",
+    title: "Eficsy - Enterprise Data Engineering, AI Automation & Custom Software Development",
+    description: "Leading data engineering company specializing in AI automation, machine learning solutions, ETL pipelines, cloud data warehousing, and business intelligence.",
     images: ['/eficwhite1.png'],
   },
   robots: {
@@ -83,7 +139,7 @@ export default function RootLayout({ children }) {
     "name": "Eficsy",
     "url": "https://eficsy.com",
     "logo": "https://eficsy.com/eficwhite1.png",
-    "description": "Eficsy delivers cutting-edge data analytics, AI automation, and web & mobile app development services to transform your business.",
+    "description": "Leading data engineering company specializing in AI automation, machine learning solutions, ETL pipelines, cloud data warehousing, business intelligence, and enterprise software development.",
     "sameAs": [
       // Add your social media profiles here when available
       // "https://www.linkedin.com/company/eficsy",
@@ -93,7 +149,16 @@ export default function RootLayout({ children }) {
       "@type": "ContactPoint",
       "contactType": "Customer Service",
       "availableLanguage": ["English"]
-    }
+    },
+    "areaServed": "Worldwide",
+    "serviceType": [
+      "Data Engineering",
+      "AI Automation",
+      "Machine Learning",
+      "Software Development",
+      "Business Intelligence",
+      "Data Analytics"
+    ]
   };
 
   return (
