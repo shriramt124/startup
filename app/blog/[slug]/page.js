@@ -27,6 +27,47 @@ async function getPost(slug) {
   }
 }
 
+export async function generateMetadata({ params }) {
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
+  const post = await getPost(slug);
+
+  if (!post) {
+    return {
+      title: 'Post Not Found',
+    };
+  }
+
+  return {
+    title: post.title,
+    description: post.excerpt || post.title,
+    keywords: post.tags || [],
+    authors: [{ name: post.author?.name || 'Eficsy' }],
+    openGraph: {
+      title: post.title,
+      description: post.excerpt || post.title,
+      type: 'article',
+      publishedTime: post.publishedAt || post.createdAt,
+      modifiedTime: post.updatedAt,
+      authors: [post.author?.name || 'Eficsy'],
+      images: [
+        {
+          url: post.coverImageUrl || '/eficwhite1.png',
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        }
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt || post.title,
+      images: [post.coverImageUrl || '/eficwhite1.png'],
+    },
+  };
+}
+
 export default async function BlogPostPage({ params }) {
   const resolvedParams = await params;
   console.log("Params received in BlogPostPage:", resolvedParams);
@@ -39,8 +80,34 @@ export default async function BlogPostPage({ params }) {
     notFound();
   }
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.excerpt || post.title,
+    "image": post.coverImageUrl || "https://eficsy.com/eficwhite1.png",
+    "datePublished": post.publishedAt || post.createdAt,
+    "dateModified": post.updatedAt || post.publishedAt || post.createdAt,
+    "author": {
+      "@type": "Organization",
+      "name": post.author?.name || "Eficsy"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Eficsy",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://eficsy.com/eficwhite1.png"
+      }
+    }
+  };
+
   return (
     <main className="min-h-screen bg-white text-black">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       {/* Post Header */}
       <header className="relative h-[40vh] sm:h-[50vh] w-full">
         {post.coverImageUrl && (

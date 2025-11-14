@@ -4,6 +4,14 @@ import BlogHero from '../components/BlogHero';
 import Image from 'next/image';
 import { apiUrl } from '../../lib/api';
 
+export const metadata = {
+  title: "Blog - Data Engineering & AI Insights | Eficsy",
+  description: "Read the latest insights on data engineering, AI automation, web development, and technology trends from Eficsy's expert team.",
+  alternates: {
+    canonical: '/blog',
+  },
+};
+
 async function getPosts() {
   try {
     // Ensure this port matches the one your 'next-tiptap' project is running on

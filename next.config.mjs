@@ -2,6 +2,7 @@
 const nextConfig = {
   reactCompiler: true,
   images: {
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -13,5 +14,8 @@ const nextConfig = {
       },
     ],
   },
+  compress: true,
+  poweredByHeader: false,
+  generateEtags: true,
 }
 export default nextConfig;

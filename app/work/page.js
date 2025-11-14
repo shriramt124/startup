@@ -4,6 +4,14 @@ import { WhyChooseUs } from "../about/page";
 import { ContactCTA } from "../about/page";
 import { apiUrl } from '../../lib/api';
 
+export const metadata = {
+  title: "Our Projects - Case Studies & Portfolio | Eficsy",
+  description: "Explore Eficsy's portfolio of successful data engineering, AI, and development projects. See how we've helped businesses transform with technology.",
+  alternates: {
+    canonical: '/work',
+  },
+};
+
 async function fetchProjects() {
   // Try common CMS ports: prefer 3001, fall back to 3000
   const url = apiUrl('/api/v1/projects?limit=100');
