@@ -1,131 +1,166 @@
+
 "use client";
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-
-// Default featured items, used as a fallback
-const featured = [
-  {
-    slug: "/blog/how-we-work",
-    title: "How We Work: From Brief to Launch",
-    excerpt:
-      "Peek behind the curtain of our process, from discovery to delivery, and how we keep momentum without sacrificing quality.",
-    image: "/assets/demo/cs2.webp",
-    tag: "Process",
-  },
-  {
-    slug: "/blog/design-systems",
-    title: "Design Systems That Actually Ship",
-    excerpt:
-      "A practical guide to building design systems that designers love and engineers adopt.",
-    image: "/assets/demo/cs3.webp",
-    tag: "Design",
-  },
-  {
-    slug: "/blog/ai-in-product",
-    title: "Shipping With AI: Patterns That Work",
-    excerpt:
-      "Real-world patterns for integrating AI into products without overcomplicating your stack.",
-    image: "/assets/demo/cs1.webp",
-    tag: "AI",
-  },
-];
-
-export default function BlogHero({ posts = [], auto = 6500 }) {
-  const [i, setI] = useState(0);
-  const timer = useRef();
-
-  // Map incoming posts to the format the slider expects.
-  // If no posts are provided, use the default 'featured' array.
-  const items = posts.length > 0 ? posts.map(p => ({
-    slug: `/blog/${p.slug}`,
-    title: p.title,
-    excerpt: p.excerpt || 'Read more about this topic.',
-    image: p.coverImageUrl || '/assets/demo/cs1.webp',
-    tag: p.category?.name || 'General'
-  })) : featured;
-
-  console.log("posts from hero ",posts);
+export default function BlogHero({ posts }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
-    // Guard against empty items array
-    if (items.length === 0) return;
-    timer.current = setTimeout(() => setI((s) => (s + 1) % items.length), auto);
-    return () => clearTimeout(timer.current);
-  }, [i, items.length, auto]);
+    if (!posts || posts.length === 0) return;
+    
+    const timer = setInterval(() => {
+      handleNext();
+    }, 5000);
 
-  const go = (idx) => {
-    clearTimeout(timer.current);
-    setI(idx);
+    return () => clearInterval(timer);
+  }, [currentIndex, posts]);
+
+  const handleNext = () => {
+    if (isAnimating || !posts || posts.length === 0) return;
+    setIsAnimating(true);
+    setCurrentIndex((prev) => (prev + 1) % posts.length);
+    setTimeout(() => setIsAnimating(false), 500);
   };
 
-  // Don't render anything if there are no items to display
-  if (items.length === 0) {
-    return null;
+  const handlePrev = () => {
+    if (isAnimating || !posts || posts.length === 0) return;
+    setIsAnimating(true);
+    setCurrentIndex((prev) => (prev - 1 + posts.length) % posts.length);
+    setTimeout(() => setIsAnimating(false), 500);
+  };
+
+  if (!posts || posts.length === 0) {
+    return (
+      <section className="relative h-[500px] md:h-[600px] bg-gradient-to-br from-gray-900 via-black to-gray-800 flex items-center justify-center">
+        <p className="text-white text-xl">No featured posts available</p>
+      </section>
+    );
   }
 
-  return (
-    <section className="relative w-full h-[68vh] md:h-[60vh] lg:h-[56vh] overflow-hidden">
-      {/* Slides */}
-      {items.map((it, idx) => (
-        <div
-          key={it.slug + idx}
-          className={`absolute inset-0 transition-opacity duration-700 ${idx === i ? "opacity-100 z-10" : "opacity-0 z-0"}`}
-        >
-          <Image src={it.image} alt={it.title} fill className="object-cover" priority={idx === 0} />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/35 to-black/60" />
-        </div>
-      ))}
+  const currentPost = posts[currentIndex];
 
-      {/* Content */}
-      <div className="relative z-20 h-full max-w-7xl mx-auto px-6 lg:px-12 flex items-center">
-        <div className="w-full lg:w-2/3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-white/90 text-xs mb-4 backdrop-blur-sm">
-            <span className="w-2 h-2 rounded-full bg-orange-500 inline-block" />
-            <span className="uppercase tracking-wider">Featured</span>
-            <span className="opacity-70">•</span>
-            <span className="opacity-90">{items[i].tag}</span>
-          </div>
-          <h1 className="text-white font-extrabold leading-tight text-2xl sm:text-4xl lg:text-5xl mb-4 line-clamp-3">
-            {items[i].title}
-          </h1>
-          <p className="text-white/85 text-sm sm:text-base max-w-2xl mb-6 line-clamp-3">
-            {items[i].excerpt}
-          </p>
-          <a
-            href={items[i].slug}
-            className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-semibold hover:scale-[1.02] transition"
-          >
-            Read article
-            <span className="inline-block rotate-45">↗</span>
-          </a>
-        </div>
+  return (
+    <section className="relative h-[500px] md:h-[600px] overflow-hidden bg-black">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0">
+        <Image
+          src={currentPost.coverImageUrl || '/assets/demo/cs1.webp'}
+          alt={currentPost.title}
+          fill
+          className="object-cover transition-opacity duration-500"
+          priority
+          quality={85}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/30" />
       </div>
 
-      {/* Controls */}
-      <button
-        aria-label="Prev"
-        onClick={() => setI((s) => (s - 1 + items.length) % items.length)}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/35 text-white flex items-center justify-center hover:bg-black/55"
-      >
-        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"/></svg>
-      </button>
-      <button
-        aria-label="Next"
-        onClick={() => setI((s) => (s + 1) % items.length)}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/35 text-white flex items-center justify-center hover:bg-black/55"
-      >
-        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>
-      </button>
+      {/* Content */}
+      <div className="relative z-10 h-full max-w-7xl mx-auto px-6 lg:px-12 flex flex-col justify-end pb-12 md:pb-20">
+        {/* Category Badge */}
+        {currentPost.category?.name && (
+          <div className="mb-4">
+            <span className="inline-block px-3 py-1 text-xs font-semibold text-white bg-green-600 rounded-full">
+              {currentPost.category.name}
+            </span>
+          </div>
+        )}
 
-      {/* Dots */}
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-30 flex gap-2">
-        {items.map((_, idx) => (
+        {/* Title - Truncated with proper CSS */}
+        <h1 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 max-w-4xl blog-hero-title">
+          {currentPost.title}
+        </h1>
+
+        {/* Excerpt - Truncated with proper CSS */}
+        {currentPost.excerpt && (
+          <p className="text-white/90 text-base sm:text-lg md:text-xl leading-relaxed mb-6 max-w-3xl blog-hero-excerpt">
+            {currentPost.excerpt}
+          </p>
+        )}
+
+        {/* Meta Info */}
+        <div className="flex items-center gap-4 text-white/70 text-sm mb-6">
+          <span>
+            {new Date(currentPost.publishedAt || currentPost.createdAt).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </span>
+          {currentPost.readTime && (
+            <>
+              <span>•</span>
+              <span>{currentPost.readTime} min read</span>
+            </>
+          )}
+        </div>
+
+        {/* CTA Button */}
+        <Link
+          href={`/blog/${currentPost.slug}`}
+          className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 transition-all duration-300 w-fit"
+        >
+          Read Article
+          <svg
+            className="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </Link>
+      </div>
+
+      {/* Navigation Controls */}
+      <div className="absolute bottom-8 right-6 lg:right-12 z-20 flex items-center gap-3">
+        <button
+          onClick={handlePrev}
+          disabled={isAnimating}
+          className="p-3 bg-white/10 backdrop-blur-sm text-white rounded-full hover:bg-white/20 transition-all duration-300 disabled:opacity-50"
+          aria-label="Previous slide"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button
+          onClick={handleNext}
+          disabled={isAnimating}
+          className="p-3 bg-white/10 backdrop-blur-sm text-white rounded-full hover:bg-white/20 transition-all duration-300 disabled:opacity-50"
+          aria-label="Next slide"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Pagination Dots */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex items-center gap-2">
+        {posts.map((_, index) => (
           <button
-            key={idx}
-            aria-label={`Go to ${idx + 1}`}
-            onClick={() => go(idx)}
-            className={`h-2 rounded-full transition-all ${idx === i ? "bg-white w-7" : "bg-white/40 w-2 hover:bg-white/70"}`}
+            key={index}
+            onClick={() => {
+              if (!isAnimating) {
+                setIsAnimating(true);
+                setCurrentIndex(index);
+                setTimeout(() => setIsAnimating(false), 500);
+              }
+            }}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              index === currentIndex
+                ? 'w-8 bg-white'
+                : 'w-2 bg-white/50 hover:bg-white/70'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>

@@ -149,7 +149,7 @@ h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, select, label 
 /* Marquee / Trusted-by slider used in Hero -> Company intro
    Moved from component-scoped styled-jsx into global CSS so server
    and client see the same stylesheet ordering (prevents hydration
-   mismatches from generated scoped class hashes). */
+   mismatches from generated class hashes). */
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -509,4 +509,36 @@ html { scroll-padding-top: 90px; }
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Blog Hero Text Truncation - Safe for client components */
+.blog-hero-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: clamp(1.75rem, 4vw, 3.5rem);
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.blog-hero-excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  word-break: break-word;
+}
+
+/* Ensure responsive text scaling */
+@media (max-width: 640px) {
+  .blog-hero-title {
+    -webkit-line-clamp: 2;
+  }
+  .blog-hero-excerpt {
+    -webkit-line-clamp: 2;
+  }
 }
